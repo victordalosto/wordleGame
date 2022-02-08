@@ -1,0 +1,146 @@
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    -webkit-text-size-adjust: 100%;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#game {
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    border-bottom: 1px solid rgb(58, 58, 60);
+    margin: 0.15em 0;
+}
+
+.title {
+    color: white;
+    font-size: 6rem;
+    font-weight: bold;
+    margin: 0.05rem auto 0.90rem auto;
+    text-align: center;
+    font-family: 'Qwitcher Grypen', "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.fancy {
+    font-size: 2.2rem; 
+    margin: 0.2rem 0.2rem 0.4rem 0.2rem;
+    font-family: "Shadows Into Light", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+#board-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    /* overflow: hidden;*/
+}
+
+#board {
+    display: grid;
+    grid-gap: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.square{
+    border: 2px solid rgb(58, 58, 60);
+    min-width: 55px;
+    min-height: 55px;
+    font-size: 40px;
+    font-weight: bold;
+    color: gainsboro;
+    text-transform: uppercase;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin: 0;
+}
+
+#keyboard-container {
+    height: 200px;
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 6px auto 6px auto;
+    touch-action: manipulation;
+}
+
+.keyboard-row button {
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: bold;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    background-color: rgb(110, 142, 160);
+    color: rgb(215, 218, 220);
+    flex-grow: 1;
+    text-transform: uppercase;
+    margin: 0 4px 0 4px;
+    border-radius: 4px;
+    user-select: none;
+    height: 50px;
+    max-width: 70px;
+}
+
+.keyboard-row button:hover {
+    font-size: 21px;
+    color: rgb(218, 222, 224);
+    transform: scale(1.1);
+    transition: 0.05s;
+}
+
+.keyboard-row button.wide-button {
+    flex-grow: 1.8;
+    max-width: 90px;
+}
+
+.credits {
+    display: flex;
+    justify-content: center;
+    visibility: hidden;
+    margin-bottom: 25px;
+}
+
+.rodape {
+    visibility: hidden;
+}
+
+.rodape, .rodape a, .rodape a:visited, .rodape a:active {
+    color: white;
+	text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin: 15px auto 20px auto;
+    font-family: "Rowdies", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+.rodape a:hover{
+    font-size: 20px;
+    transition: 0.15s;
+    color: #000000;
+}
+
