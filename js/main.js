@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function that get a new World
     function getNewWord() {
-        const dayWord = "CAMA";
+        const dayWord = "VVVUUVVV";
         return dayWord;
     }
     
@@ -44,62 +44,86 @@ document.addEventListener("DOMContentLoaded", () => {
                 boxes[i+currentTry].style.border = '2px solid rgba(76, 76, 78)';
             }
         }
-        if (guessedWord.length > 0){
-            boxes[guessedWord.length + currentTry-1].classList.add(animeType);
-            window.setTimeout(()=>{boxes[guessedWord.length + currentTry-1].classList.remove(animeType)}, 100);
-        }
-    }
-
-
-    function checkYellowBox(newWord, dayWorld, j){
-        var nInWord = newWord.match(new RegExp(newWord[j], "g") || []).length; // number of Letters J in input Word
-        var nDayWord = dayWord.match(new RegExp(dayWord[k], "g") || []).length; // number of Letters J in input Word
-        var currentN = newWord.substring(0, j+1);
-        var ncurrentN = currentN.match(new RegExp(currentN[k], "g") || []).length; // number of Letters J in current iteration
-        correctN = 0;
-        totalCorrect = 0;
-        for (n=0; n<newWord.length; n++){
-            if(newWord[n] == dayWord[n]){
-                totalCorrect++;
-            }
-            if (n<currentN.length && currentN[n] == dayWord[n]){
-                correctN++;
-            }
-        }
-    }
-
-
-    function updateAfterEnter(newWord, FixedDayWord) {
-        var boxes = document.querySelectorAll(".square") 
-        letter_loop:
-        for (var j=0; j<newWord.length; j++){
-            if(newWord[j] == FixedDayWord[j]){
-                boxes[j+currentTry].classList.add("correctBox");
-                continue;
-            } 
-            
-            for (k=0; k<dayWord.length; k++){
-                // check possible yellow value
-                if(newWord[j] == FixedDayWord[k]){
-                    boxes[j+currentTry].classList.add("semiCorrectBox");
-                    checkYellowBox(newWord, FixedDayWord, j);
-                    continue letter_loop;
-                } 
-            }
-            boxes[j+currentTry].classList.add("wrongBox");
+        
+        if (guessedWord.length > 0 && animeType == "animationPop"){
+            const iterable = guessedWord.length + currentTry -1;
+            boxes[iterable].classList.add(animeType);
+            window.setTimeout(()=>{boxes[iterable].classList.remove(animeType)}, 150);
         }
         
-        if (fixWord(newWord) == fixWord(dayWord)){
+    }
+
+    
+    function checkYellowBox(word, fixedDayWord, j){
+        var nDayWord = 0;
+        var ncurrentN = 0
+        totalCorrect = 0;
+        
+        for (n=0; n<word.length; n++){
+            if(fixedDayWord[n] == word[j]){
+                nDayWord++;
+            }
+
+            if(n<j && word[n] == word[j] && word[j] != fixedDayWord[n]){
+                ncurrentN++;
+            }
+
+            if(word[n] == word[j] && word[n] == fixedDayWord[n]){
+                totalCorrect++;
+            }
+        }
+        const NtoTagYellow = nDayWord - totalCorrect; 
+        if (ncurrentN < NtoTagYellow){
+            return "semiCorrectBox";
+        } else {
+            return "wrongBox";
+        }
+    }
+
+
+    function updateAfterEnter(word, fixedDayWord) {
+        var boxes = document.querySelectorAll(".square")
+        const lista = [];
+        const CT = currentTry;
+        letter_loop:
+        for (var j=0; j<word.length; j++){
+            if(word[j] == fixedDayWord[j]){
+                lista.push("correctBox");
+            } else {
+                lista.push("wrongBox");
+                for (k=0; k<dayWord.length; k++){
+                    // check possible yellow value
+                    if(word[j] == fixedDayWord[k]){
+                        lista[j] = checkYellowBox(word, fixedDayWord, j);
+                        continue letter_loop;
+                    } 
+                } 
+            }
+
+        }
+        time = 0;
+        for (var j=0; j<word.length; j++){
+            const iterable = j+currentTry;
+            const value = lista[j];
+            window.setTimeout(()=>{boxes[iterable].classList.add("animationFlip"); }, time);
+            window.setTimeout(()=>{boxes[iterable].classList.add(value); }, time+300);
+            time = time + 150;
+        }
+        
+        if (fixWord(word) == fixWord(dayWord)){
             credits();
             return;
         } 
-        if (currentTry + dayWord.length >= numTrys * dayWord.length){
+
+        if (CT + dayWord.length >= numTrys * dayWord.length){
             credits();
         } else {
             currentTry += dayWord.length
             guessedWord = [];
         }
     }
+
+
 
     function credits(){
         gameEnded = true;
@@ -110,6 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
     // Function that handle keyPressed
     function keyPressed (letter){
         if (gameEnded == true) {
@@ -117,27 +142,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         letter = fixWord(letter);
-        var fixedDayWord = fixWord(dayWord);
-
         if (letter == "enter"){
             if (guessedWord.length == dayWord.length){
                 var word = "";
                 for (var j=0 ; j<guessedWord.length; j++){
                     word += guessedWord[j];
                 }
-                updateAfterEnter(fixWord(word), fixedDayWord);
+                updateAfterEnter(fixWord(word), fixWord(dayWord));
             } else {
                 var boxes = document.querySelectorAll(".square") 
                 for (let j=0; j< dayWord.length; j++) {
-                    boxes[j+currentTry].classList.add("animationNope");
-                    window.setTimeout(()=>{boxes[j+currentTry].classList.remove("animationNope")}, 850);
+                    const iterable = j+currentTry;
+                    boxes[iterable].classList.add("animationNope");
+                    window.setTimeout(()=>{boxes[iterable].classList.remove("animationNope")}, 850);
                 }
             }
-
         } else if (letter == "backspace" || letter == "del" || letter == "delete"){
             guessedword = guessedWord.pop();
-            updateArray("animationRemPop");
-
+            updateArray();
 
         } else if (possibleLetters.indexOf(letter) != -1){ // Check if digited letter is valid
             if (guessedWord.length < dayWord.length) {

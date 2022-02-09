@@ -79,12 +79,13 @@ header {
     align-items: center;
     text-shadow: 2px 3px 1px rgb(0, 0, 0, 0.5);
     display: flex;
-    margin: 0;s
+    margin: 0;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
     -khtml-user-select: none; /* Konqueror HTML */
     -moz-user-select: none; /* Old versions of Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
 }
 
 #keyboard-container {
