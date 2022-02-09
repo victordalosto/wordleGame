@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function that get a new World
     function getNewWord() {
-        const dayWord = "VVVUUVVV";
+        const dayWord = "VAPO";
         return dayWord;
     }
     
