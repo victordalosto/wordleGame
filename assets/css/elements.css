@@ -1,0 +1,23 @@
+
+.title {
+    color: white;
+    font-size: 5rem;
+    font-weight: bold;
+    margin: 0.05rem auto 0.80rem auto;
+    text-align: center;
+    font-family: 'Qwitcher Grypen', "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+
+.fancyTitle {
+    font-size: 2.8rem; 
+    margin: 0.2rem 0.2rem 0.4rem 0.2rem;
+    font-family: "Shadows Into Light", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+

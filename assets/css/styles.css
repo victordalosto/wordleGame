@@ -3,22 +3,25 @@ html {
     height: 100%;
 }
 
+
 body {
     height: 100%;
     -webkit-text-size-adjust: 100%;
     font-family: "Lucida Sans", Verdana, sans-serif;
 }
 
+
 #container {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    height: 100%;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
 }
 
-#game {
+
+#container__game {
     width: 100%;
     max-width: 800px;
     height: 100%;
@@ -26,33 +29,14 @@ body {
     flex-direction: column;
 }
 
+
 header {
     border-bottom: 1px solid rgb(58, 58, 60);
-    margin: 0.15em 0;
+    margin: 0 0 15px 0;
 }
 
-.title {
-    color: white;
-    font-size: 5rem;
-    font-weight: bold;
-    margin: 0.05rem auto 0.90rem auto;
-    text-align: center;
-    font-family: 'Qwitcher Grypen', "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-}
 
-.fancy {
-    font-size: 2.8rem; 
-    margin: 0.2rem 0.2rem 0.4rem 0.2rem;
-    font-family: "Shadows Into Light", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-}
-
-#board-container {
+#container__board {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,17 +53,18 @@ header {
 
 .square{
     border: 2px solid rgba(76, 76, 78);
+    border-radius: 5px;
     min-width: 55px;
     min-height: 55px;
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bold;
     color: gainsboro;
     text-transform: uppercase;
     justify-content: center;
     align-items: center;
-    text-shadow: 2px 3px 1px rgb(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 1px rgb(0, 0, 0, 0.5);
     display: flex;
-    margin: 0;
+    margin: 2px 0 2px 0;
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
     -khtml-user-select: none; /* Konqueror HTML */
@@ -88,23 +73,22 @@ header {
     user-select: none;
 }
 
-#keyboard-container {
+#container__keyboard {
     height: 200px;
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
-.keyboard-row {
+.container__keyboard-row {
     display: flex;
     justify-content: center;
     width: 100%;
-    margin: 0px auto 0px auto;
+    margin: 0px auto;
     touch-action: manipulation;
 }
 
-.keyboard-row button {
-    font-size: 13px;
-    font-family: inherit;
-    font-weight: bold;
+.container__keyboard-row button {
+    font-size: 16px;
+    font-family: "Rowdies", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     padding: 0;
     cursor: pointer;
     border: 0;
@@ -117,10 +101,9 @@ header {
     user-select: none;
     height: 40px;
     max-width: 40px;
-    vertical-align: botton;
 }
 
-.keyboard-row button:hover {
+.container__keyboard-row button:hover {
     font-size: 19px;
     color: rgb(218, 222, 224);
     transform: scale(1.15);
@@ -129,23 +112,23 @@ header {
     margin: 1px 3px 1px 3px;
 }
 
-.keyboard-row button.wide-button {
+.container__keyboard-row button.wide-button {
     flex-grow: 1.8;
     max-width: 75px;
 }
 
-.credits {
+.container__credits {
     display: flex;
     justify-content: center;
     visibility: hidden;
     margin-bottom: 25px;
 }
 
-.rodape {
+.container__footing {
     visibility: hidden; 
 }
 
-.rodape, .rodape a, .rodape a:visited, .rodape a:active {
+.container__footing, .container__footing a, .container__footing a:visited, .container__footing a:active {
     color: white;
 	text-decoration: none;
     font-size: 18px;
@@ -156,7 +139,7 @@ header {
     text-shadow: 0 3px 2px rgb(0, 0, 0, 0.75);
 }
 
-.rodape a:hover{
+.container__footing a:hover{
     font-size: 20px;
     transition: 0.15s;
     color: #bdb7b7;

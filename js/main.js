@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     // Add listener to document for typing on screen
-    const keys = document.querySelectorAll(".keyboard-row button");
+    const keys = document.querySelectorAll(".container__keyboard-row button");
     document.addEventListener('keydown', event => {keyPressed(event.key);})
     for (var i = 0; i < keys.length; i++) { // Add listener to keys typed on browser
         keys[i].onclick = ({ target }) => {keyPressed(target.getAttribute("data-key"));}
@@ -127,10 +127,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function credits(){
         gameEnded = true;
-        document.getElementById("keyboard-container").remove();
-        document.querySelector(".credits").style.visibility = "visible";
+        document.getElementById("container__keyboard").remove();
+        document.querySelector(".container__credits").style.visibility = "visible";
         //document.querySelector("iframe").height = "auto";
-        document.querySelector(".rodape").style.visibility = "visible";
+        document.querySelector(".container__footing").style.visibility = "visible";
 
     }
 
@@ -141,8 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         
-        letter = fixWord(letter);
-        if (letter == "enter"){
+        if (fixWord(letter) == "enter"){
             if (guessedWord.length == dayWord.length){
                 var word = "";
                 for (var j=0 ; j<guessedWord.length; j++){
@@ -157,11 +156,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     window.setTimeout(()=>{boxes[iterable].classList.remove("animationNope")}, 850);
                 }
             }
-        } else if (letter == "backspace" || letter == "del" || letter == "delete"){
+        } else if (fixWord(letter) == "backspace" || fixWord(letter) == "del" || fixWord(letter) == "delete"){
             guessedword = guessedWord.pop();
             updateArray();
 
-        } else if (possibleLetters.indexOf(letter) != -1){ // Check if digited letter is valid
+        } else if (possibleLetters.indexOf(fixWord(letter)) != -1){ // Check if digited letter is valid
             if (guessedWord.length < dayWord.length) {
             guessedWord.push(letter);
             updateArray("animationPop");
