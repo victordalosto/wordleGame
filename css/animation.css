@@ -8,25 +8,6 @@
     animation-duration: 0.65s;
 }
 
-
-.square {
-    animation-name: cardEntrance;
-    animation-fill-mode: backwards;
-    animation-timing-function: ease-out;
-    animation-delay: 0.1s;
-    animation-duration: 0.25s;
-}
-
-.keyboard-row button {
-    opacity: 0;
-    animation-name: cardEntrance;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-out;
-    animation-delay: 1.15s;
-    animation-duration: 0.5s;
-}
-
-
 .correctBox {
     background-color: #538d4e;
     border: 1px solid rgb(58, 58, 60);
@@ -41,6 +22,50 @@
     background-color: #3a3a3c;
     border: 1px solid rgb(58, 58, 60);
 }
+
+
+.animationNope {
+    animation-name: nope;
+    animation-duration: 0.8s;
+    animation-delay: 0s; 
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+}
+
+.animationBegin {
+    animation-name: cardEntrance;
+    animation-fill-mode: backwards;
+    animation-timing-function: ease-out;
+    animation-delay: 0.1s;
+    animation-duration: 0.25s;
+}
+
+.animationKeyboardBegin{
+    opacity: 0;
+    animation-name: cardEntrance;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+    animation-delay: 1.15s;
+    animation-duration: 0.5s;
+}
+
+.animationPop{
+    animation-name: pop;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-;
+    animation-duration: 80ms;
+}
+
+.animationRemPop{
+    animation-name: remPop;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-;
+    animation-duration: 80ms;
+}
+
+
 
 @keyframes slide {
     from {
@@ -61,4 +86,69 @@
         transform: scale(1);
         filter: hue-rotate(0deg)
     }
+}
+
+@keyframes nope{
+    10%{
+        transform:translateX(-13px);
+    }
+    20%{
+        transform:translateX(13px);
+    }
+    30%{
+        transform:translateX(-8px);
+    }
+    40%{
+        transform:translateX(8px);
+    }
+    50%{
+        transform:translateX(-5px);
+    }
+    60%{
+        transform:translateX(5px);
+    }
+    70%{
+        transform:translateX(-2px);
+    }
+    80%{
+        transform:translateX(2px);
+    }
+    90%{
+        transform:translateX(-1px);
+    }
+    95%{
+        transform:translateX(1px);
+    }
+    to{
+        transform:translateX(0);
+    }
+}
+
+@keyframes pop {
+    1%{
+        transform: scale(1);
+    } 
+    20%{
+        transform: scale(1.15);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+
+@keyframes remPop {
+    1%{
+        transform: scale(1);
+    } 
+    40%{
+        transform: scale(0.85);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+@keyframes flip {
+
 }

@@ -2,91 +2,110 @@ document.addEventListener("DOMContentLoaded", () => {
 
     var gameEnded = false;
     var currentTry = 0;
-    const numTrys = 6;
-    guessedWord = [];
+    var guessedWord = [];
+
     const possibleLetters = ['q' ,'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ç', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', ' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'à', 'á', 'â', 'â', 'í', 'é', 'ê', 'ó', 'ô', 'õ', 'ú', 'ç', 'ñ'];
     const dayWord = getNewWord();
+    const numTrys = 6;
+    createSquares(dayWord, numTrys);
+    startAnimations();
+   
 
     // Function that get a new World
     function getNewWord() {
-        const dayWord = "RABETAO";
-        createSquares(dayWord, numTrys);
-        changeBackground("#FC466B", "#3F5EFB")  //changeBackground("#0eec3ea6", "#5445fca6")//changeBackground("#5445fca6", "#fb9e41a6");
+        const dayWord = "CAMA";
         return dayWord;
     }
-  
-
-    const keys = document.querySelectorAll(".keyboard-row button");
+    
 
     // Add listener to document for typing on screen
+    const keys = document.querySelectorAll(".keyboard-row button");
     document.addEventListener('keydown', event => {keyPressed(event.key);})
-    
-    // Add listener to the keys displayed on web
-    for (var i = 0; i < keys.length; i++) {
+    for (var i = 0; i < keys.length; i++) { // Add listener to keys typed on browser
         keys[i].onclick = ({ target }) => {keyPressed(target.getAttribute("data-key"));}
     }
 
 
-    // Trasnform input value and Day world in a valid expression to be compared
+    // Trasnform input value and dayWorld in a valid comparaBle expression
     function fixWord (word){
         return (word.toLocaleLowerCase()).replace(/[àáâã]/, 'a').replace(/[í]/, 'i').replace(/[éê]/, 'e').replace(/[óôõ]/,'o').replace(/[ú]/, 'u').replace('ç', 'c').replace('ñ', 'n');
     }
 
+
     // update the UI squares with the array digited
-    function updateArray() { 
-        var boxes = document.querySelectorAll(".square")   
+    function updateArray(animeType) {
+        var boxes = document.querySelectorAll(".square") 
         for (var i=0; i<dayWord.length; i++){
             if (i < guessedWord.length){
-                text = guessedWord[i];
+                boxes[i+currentTry].textContent = guessedWord[i];
+                boxes[i+currentTry].style.border = '2px solid black';
             } else {
-                text = "";
+                boxes[i+currentTry].textContent = "";
+                boxes[i+currentTry].style.border = '2px solid rgba(76, 76, 78)';
             }
-            boxes[i+currentTry].textContent = text;
+        }
+        if (guessedWord.length > 0){
+            boxes[guessedWord.length + currentTry-1].classList.add(animeType);
+            window.setTimeout(()=>{boxes[guessedWord.length + currentTry-1].classList.remove(animeType)}, 100);
         }
     }
 
-    function updateAfterEnter(newWord) {
+
+    function checkYellowBox(newWord, dayWorld, j){
+        var nInWord = newWord.match(new RegExp(newWord[j], "g") || []).length; // number of Letters J in input Word
+        var nDayWord = dayWord.match(new RegExp(dayWord[k], "g") || []).length; // number of Letters J in input Word
+        var currentN = newWord.substring(0, j+1);
+        var ncurrentN = currentN.match(new RegExp(currentN[k], "g") || []).length; // number of Letters J in current iteration
+        correctN = 0;
+        totalCorrect = 0;
+        for (n=0; n<newWord.length; n++){
+            if(newWord[n] == dayWord[n]){
+                totalCorrect++;
+            }
+            if (n<currentN.length && currentN[n] == dayWord[n]){
+                correctN++;
+            }
+        }
+    }
+
+
+    function updateAfterEnter(newWord, FixedDayWord) {
         var boxes = document.querySelectorAll(".square") 
+        letter_loop:
         for (var j=0; j<newWord.length; j++){
-            if(fixWord(newWord[j]) == fixWord(dayWord[j])){
-                boxes[j+currentTry].classList.add("correctBox")
+            if(newWord[j] == FixedDayWord[j]){
+                boxes[j+currentTry].classList.add("correctBox");
+                continue;
             } 
-            var checkSemiCorrect = false;
+            
             for (k=0; k<dayWord.length; k++){
-                if(fixWord(newWord[j]) == fixWord(dayWord[k])){
-                    checkSemiCorrect = true;
+                // check possible yellow value
+                if(newWord[j] == FixedDayWord[k]){
+                    boxes[j+currentTry].classList.add("semiCorrectBox");
+                    checkYellowBox(newWord, FixedDayWord, j);
+                    continue letter_loop;
                 } 
             }
-            if (!boxes[j+currentTry].classList.contains("correctBox")){
-                if (checkSemiCorrect == true){
-                    boxes[j+currentTry].classList.add("semiCorrectBox")
-                } else {
-                    boxes[j+currentTry].classList.add("wrongBox")
-                }
-            }
+            boxes[j+currentTry].classList.add("wrongBox");
         }
         
         if (fixWord(newWord) == fixWord(dayWord)){
-            alert("ACERTOU MIZERAVI");
             credits();
             return;
         } 
         if (currentTry + dayWord.length >= numTrys * dayWord.length){
             credits();
-            alert("GAME OVER")
         } else {
             currentTry += dayWord.length
             guessedWord = [];
         }
     }
 
-
-
     function credits(){
         gameEnded = true;
         document.getElementById("keyboard-container").remove();
         document.querySelector(".credits").style.visibility = "visible";
-        document.querySelector("iframe").height = "auto";
+        //document.querySelector("iframe").height = "auto";
         document.querySelector(".rodape").style.visibility = "visible";
 
     }
@@ -96,27 +115,34 @@ document.addEventListener("DOMContentLoaded", () => {
         if (gameEnded == true) {
             return;
         }
-        var letter = letter.toLowerCase();
-        var numLetterGuessed = guessedWord.length;
+        
+        letter = fixWord(letter);
+        var fixedDayWord = fixWord(dayWord);
 
         if (letter == "enter"){
-            if (numLetterGuessed == dayWord.length){
-                var newWord = "";
+            if (guessedWord.length == dayWord.length){
+                var word = "";
                 for (var j=0 ; j<guessedWord.length; j++){
-                    newWord += guessedWord[j];
+                    word += guessedWord[j];
                 }
-                updateAfterEnter(newWord);
+                updateAfterEnter(fixWord(word), fixedDayWord);
+            } else {
+                var boxes = document.querySelectorAll(".square") 
+                for (let j=0; j< dayWord.length; j++) {
+                    boxes[j+currentTry].classList.add("animationNope");
+                    window.setTimeout(()=>{boxes[j+currentTry].classList.remove("animationNope")}, 850);
+                }
             }
 
         } else if (letter == "backspace" || letter == "del" || letter == "delete"){
             guessedword = guessedWord.pop();
-            updateArray();
+            updateArray("animationRemPop");
 
 
         } else if (possibleLetters.indexOf(letter) != -1){ // Check if digited letter is valid
-            if (numLetterGuessed < dayWord.length) {
+            if (guessedWord.length < dayWord.length) {
             guessedWord.push(letter);
-            updateArray();
+            updateArray("animationPop");
             }
         }
     }
