@@ -1,84 +1,144 @@
 
+/*
+*
+*
+*  GENERAL PAGE LOOK
+*
+*
+*/
+
 html {
+    background: linear-gradient(135deg, #FC466B, #3F5EFB) no-repeat;
     height: 100%;
-}
-
-
-body {
-    height: 100%;
-    -webkit-text-size-adjust: 100%;
-    font-family: "Lucida Sans", Verdana, sans-serif;
-}
-
-
-#container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
-#container__game {
+    line-height: 1.15;
+    margin: 0 auto;
+    overflow: hidden;
     width: 100%;
-    max-width: 800px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    -webkit-text-size-adjust: 100%;
 }
-
 
 header {
-    border-bottom: 1px solid rgb(58, 58, 60);
-    margin: 0 0 15px 0;
+    height: 7vh;
+    margin: 15px auto 1px auto;
 }
 
-
-#container__board {
+body {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-    /* overflow: hidden;*/
-}
-
-#board {
-    display: grid;
-    grid-gap: 5px;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-.square{
-    border: 2px solid rgba(76, 76, 78);
-    border-radius: 5px;
-    min-width: 55px;
-    min-height: 55px;
-    font-size: 30px;
-    font-weight: bold;
-    color: gainsboro;
-    text-transform: uppercase;
-    justify-content: center;
-    align-items: center;
-    text-shadow: 2px 2px 1px rgb(0, 0, 0, 0.5);
-    display: flex;
-    margin: 2px 0 2px 0;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
+    flex-direction: column;
+    height: 100%;
+    margin: 0 auto 0 auto;
+    max-width: 720px;
+    width: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-sevlect: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 }
 
-#container__keyboard {
-    height: 200px;
-    margin-top: 15px;
+main {
+    align-items:center;
+    display:flex;
+    flex-direction:column;
+    flex-grow:1;
+    flex-shrink:50;
+    justify-content:center;
+    overflow:auto;
+    width:100%
 }
 
-.container__keyboard-row {
+main::-webkit-scrollbar{
+    background-color:transparent;
+    width:12px
+}
+
+main::-webkit-scrollbar-thumb{
+    background:rgba(117, 102, 192, 0.514);
+    border-radius:6px
+}
+
+#section__game {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+#game__board {
+    align-items: center;
+    background-size: 58px 58px;
+    background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+#board {
+    align-content: center;
+    display: grid;
+    flex-grow: 0;
+    justify-content: center;
+    max-height: 100%;
+}
+
+.square{
+    align-items: center;
+    border: 2px solid rgba(197, 189, 182, 0.637);
+    border-radius: 8px;
+}
+
+
+
+
+/*
+*
+*
+*  TEXT STYLES
+*
+*
+*/
+
+.title {
+    color: rgb(255, 255, 255);
+    font-family: 'Sedgwick Ave Display', cursive;
+    font-size: 7vh;
+    text-align: center;
+}
+
+.notification {
+    color: rgb(165, 150, 230);
+    font-size: 1.6em;
+    text-align: center;
+    margin: 0.15em;
+}
+
+.square {
+    color: rgb(255, 255, 255);
+    font-family: 'Oregano', cursive;
+    text-shadow: 1px 1px 3px black;
+    font-weight: BOLD;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+/*
+*
+*
+*  KEYBOARD
+*
+*
+*/
+
+#game__keyboard {
+    padding: 5px 5px 15px 5px;
+}
+
+.game__keyboard-row {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -86,62 +146,154 @@ header {
     touch-action: manipulation;
 }
 
-.container__keyboard-row button {
-    font-size: 16px;
-    font-family: "Rowdies", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    padding: 0;
+.game__keyboard-row button {
+    color: rgb(80, 76, 95);
+    background-color: rgb(221, 218, 228);
+    border: 1px solid rgb(48, 44, 44);
+    border-radius: 6px;
+    box-shadow: 1px 1px 1px black;
     cursor: pointer;
-    border: 0;
-    background-color: rgba(36, 44, 49, 0.85);
-    color: rgb(215, 218, 220);
     flex-grow: 1;
-    text-transform: uppercase;
+    font-size: 18px;
+    font-family: 'Russo One', sans-serif;
     margin: 3px;
-    border-radius: 4px;
-    user-select: none;
-    height: 40px;
-    max-width: 40px;
+    padding: 0;
+    height: 35px;
+    max-width: 50px;
+    text-transform: uppercase;
+    vertical-align: bottom;
 }
 
-.container__keyboard-row button:hover {
-    font-size: 19px;
-    color: rgb(218, 222, 224);
+.game__keyboard-row button:hover {
+    font-size: 23px;
     transform: scale(1.15);
     transition: all 0.05s linear;
-    height: 44px;
     margin: 1px 3px 1px 3px;
 }
 
-.container__keyboard-row button.wide-button {
-    flex-grow: 1.8;
-    max-width: 75px;
+.game__keyboard-row button.enter-button {
+    max-width: 105px;
+    justify-content: right;
 }
 
-.container__credits {
-    display: flex;
-    justify-content: center;
-    visibility: hidden;
-    margin-bottom: 25px;
+
+
+
+/*
+*
+*
+*  ANIMATIONS
+*
+*
+*/
+
+.title {
+    opacity: 0;
+    transform: translateY(-25px);
+    animation-name: slide;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+    animation-delay: 0.45s;
+    animation-duration: 0.65s;
 }
 
-.container__footing {
-    visibility: hidden; 
+.correctBox {
+    background-color: rgb(59, 153, 50);
 }
 
-.container__footing, .container__footing a, .container__footing a:visited, .container__footing a:active {
-    color: white;
-	text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    margin: 15px auto 20px auto;
-    font-family: "Rowdies", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    text-shadow: 0 3px 2px rgb(0, 0, 0, 0.75);
+.semiCorrectBox {
+    background-color: rgb(211, 178, 32);
 }
 
-.container__footing a:hover{
-    font-size: 20px;
-    transition: 0.15s;
-    color: #bdb7b7;
+.wrongBox {
+    background-color: rgb(122, 122, 131);
 }
 
+.animationNope {
+    animation-name: nope;
+    animation-duration: 0.8s;
+    animation-delay: 0s; 
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+}
+
+.animationBegin {
+    animation-name: cardEntrance;
+    animation-fill-mode: backwards;
+    animation-timing-function: ease-out;
+    animation-delay: 0.1s;
+    animation-duration: 0.25s;
+}
+
+.animationKeyboardBegin{
+    opacity: 0;
+    animation-name: cardEntrance;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+    animation-delay: 1s;
+    animation-duration: 0.4s;
+}
+
+.animationPop{
+    animation-name: pop;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-duration: 80ms;
+}
+
+.animationFlip {
+    animation-name: flip;
+    animation-duration: 0.6s;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+}
+
+
+@keyframes slide {
+    from {
+        opacity: 0; 
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.3);
+        filter: hue-rotate(75deg);
+    } to {
+        opacity: 1;
+        transform: scale(1);
+        filter: hue-rotate(0deg)
+    }
+}
+
+@keyframes nope{
+    10%{
+    transform:translateX(-13px); 
+    } 20%{ transform:translateX(13px); 
+    } 30%{ transform:translateX(-8px); 
+    } 40%{ transform:translateX(8px); 
+    } 50%{ transform:translateX(-5px); 
+    } 60%{ transform:translateX(5px); 
+    } 70%{ transform:translateX(-2px); 
+    } 80%{ transform:translateX(2px); 
+    } 90%{ transform:translateX(-1px); 
+    } 95%{ transform:translateX(1px); 
+    }  to{ transform:translateX(0);}
+}
+
+@keyframes pop {
+    1%{ transform: scale(1);
+    } 20%{ transform: scale(1.25);
+    } 100%{ transform: scale(1); }
+}
+
+@keyframes flip {
+    0%{ transform: rotateX(0deg);
+    } 50% { transform: rotateX(90deg);
+    } 100%{ transform: rotateX(0deg);}
+}

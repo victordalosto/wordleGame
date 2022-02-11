@@ -1,79 +1,73 @@
 <!DOCTYPE html>
-<html lang="pt">
+<meta charset="UTF-8">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MC Aurelio</title>
+    <meta name="description" content="Dicionario do Funk">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="canonical" href="https://mcaurelio.com/">
     <link rel="shortcut icon" href="/assets/imgs/icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/elements.css">
-    <link rel="stylesheet" href="assets/css/animation.css">
-    <link href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Kings&family=Qwitcher+Grypen:wght@700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap" rel="stylesheet">
-  </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oregano&family=Russo+One&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
+</head>
 <body>
-    <div id="container">
-        <div id="container__game">
+    <main>
+        <section id="section__game">
             <header>
-                <h1 class="title">MC <span class="fancyTitle">AURELIO</span></h1>
+                <div class="title">MC Aurelio</div>
             </header>
 
-            <div id="container__board">
+            <div id="game__notification">
+              <!-- <div class="notification">Calma na Sarrada</div> -->
+            </div>
+
+            <div id="game__board">
                 <div id="board">
                 </div>
             </div>
 
-            <div id="container__keyboard">
-                <div class="container__keyboard-row">
-                  <button data-key="q">q</button>
-                  <button data-key="w">w</button>
-                  <button data-key="e">e</button>
-                  <button data-key="r">r</button>
-                  <button data-key="t">t</button>
-                  <button data-key="y">y</button>
-                  <button data-key="u">u</button>
-                  <button data-key="i">i</button>
-                  <button data-key="o">o</button>
-                  <button data-key="p">p</button>
+            <div id="game__keyboard"> 
+                <div class="game__keyboard-row">
+                  <button data-key="q" tabindex="-1">q</button>
+                  <button data-key="w" tabindex="-1">w</button>
+                  <button data-key="e" tabindex="-1">e</button>
+                  <button data-key="r" tabindex="-1">r</button>
+                  <button data-key="t" tabindex="-1">t</button>
+                  <button data-key="y" tabindex="-1">y</button>
+                  <button data-key="u" tabindex="-1">u</button>
+                  <button data-key="i" tabindex="-1">i</button>
+                  <button data-key="o" tabindex="-1">o</button>
+                  <button data-key="p" tabindex="-1">p</button>
                 </div>
-                <div class="container__keyboard-row">
+                <div class="game__keyboard-row">
                   <div class="spacer-half"></div>
-                  <button data-key="a">a</button>
-                  <button data-key="s">s</button>
-                  <button data-key="d">d</button>
-                  <button data-key="f">f</button>
-                  <button data-key="g">g</button>
-                  <button data-key="h">h</button>
-                  <button data-key="j">j</button>
-                  <button data-key="k">k</button>
-                  <button data-key="l">l</button>
-                  <button data-key="ç">ç</button>
+                  <button data-key="a" tabindex="-1">a</button>
+                  <button data-key="s" tabindex="-1">s</button>
+                  <button data-key="d" tabindex="-1">d</button>
+                  <button data-key="f" tabindex="-1">f</button>
+                  <button data-key="g" tabindex="-1">g</button>
+                  <button data-key="h" tabindex="-1">h</button>
+                  <button data-key="j" tabindex="-1">j</button>
+                  <button data-key="k" tabindex="-1">k</button>
+                  <button data-key="l" tabindex="-1">l</button>
+                  <button data-key="backspace" class="wide-button del-button" tabindex="-1">⌫</button>
                   <div class="spacer-half"></div>
                 </div>
-                <div class="container__keyboard-row">
-                  <button data-key="backspace" class="wide-button", style="font-size: 22px">⌫</button>
-                  <button data-key="z">z</button>
-                  <button data-key="x">x</button>
-                  <button data-key="c">c</button>
-                  <button data-key="v">v</button>
-                  <button data-key="b">b</button>
-                  <button data-key="n">n</button>
-                  <button data-key="m">m</button>
-                  <button data-key="enter" class="wide-button", style="font-size: 12px">Enter</button>
+                <div class="game__keyboard-row">
+                  <button data-key="z" tabindex="-1">z</button>
+                  <button data-key="x" tabindex="-1">x</button>
+                  <button data-key="c" tabindex="-1">c</button>
+                  <button data-key="v" tabindex="-1">v</button>
+                  <button data-key="b" tabindex="-1">b</button>
+                  <button data-key="n" tabindex="-1">n</button>
+                  <button data-key="m" tabindex="-1">m</button>
+                  <button data-key="enter" class="wide-button enter-button">Enter</button>
                 </div>
-              </div>
-              <div class="container__credits">
-                <!-- <iframe src="https://open.spotify.com/embed/track/2evRcqkyzWqaD9DJtP2oaU" width="75%" height=0 frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
-              </div>
-            <footer>
-              <p class="container__footing">Criado por <a href="https://github.com/victordalosto" target="_blank">Victor Dalosto</a> e <a href="https://github.com/HKRAGD" target="_blank">Rodrigo Augusto</a> &copy;2022</p>
-            </footer>
-        </div>
-    </div>
+        </section>
+    </main>
+  <script src="js/main.js"></script> 
 </body>
-<script src="js/visual.js"></script>
-<script src="js/main.js"></script>
 </html>

@@ -4,22 +4,28 @@ document.addEventListener("DOMContentLoaded", () => {
     var currentTry = 0;
     var guessedWord = [];
 
+    const optionsColor = ["rgb(59, 153, 50)", "rgb(211, 178, 32)", "rgb(122, 122, 131)"] // correctBox, semiCorrectBox, wrongBox
+
     const possibleLetters = ['q' ,'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'ç', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', ' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'à', 'á', 'â', 'â', 'í', 'é', 'ê', 'ó', 'ô', 'õ', 'ú', 'ç', 'ñ'];
     const dayWord = getNewWord();
     const numTrys = 6;
-    createSquares(dayWord, numTrys);
+    createSquares(dayWord.length, numTrys);
     startAnimations();
    
 
     // Function that get a new World
     function getNewWord() {
-        const dayWord = "VAPO";
+        // RABETAO;
+        // const dayWord = "MALANDRAMENTE";
+        // TCHELEKA;
+        // TCHUTCHUKA;
+        const dayWord = "TCHUTCHUKA";
         return dayWord;
     }
     
 
     // Add listener to document for typing on screen
-    const keys = document.querySelectorAll(".container__keyboard-row button");
+    const keys = document.querySelectorAll(".game__keyboard-row button");
     document.addEventListener('keydown', event => {keyPressed(event.key);})
     for (var i = 0; i < keys.length; i++) { // Add listener to keys typed on browser
         keys[i].onclick = ({ target }) => {keyPressed(target.getAttribute("data-key"));}
@@ -38,19 +44,15 @@ document.addEventListener("DOMContentLoaded", () => {
         for (var i=0; i<dayWord.length; i++){
             if (i < guessedWord.length){
                 boxes[i+currentTry].textContent = guessedWord[i];
-                boxes[i+currentTry].style.border = '2px solid black';
             } else {
                 boxes[i+currentTry].textContent = "";
-                boxes[i+currentTry].style.border = '2px solid rgba(76, 76, 78)';
             }
         }
-        
-        if (guessedWord.length > 0 && animeType == "animationPop"){
+        if (guessedWord.length > 0 && guessedWord.length < dayWord.length && animeType == "animationPop"){
             const iterable = guessedWord.length + currentTry -1;
             boxes[iterable].classList.add(animeType);
             window.setTimeout(()=>{boxes[iterable].classList.remove(animeType)}, 150);
         }
-        
     }
 
     
@@ -102,11 +104,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
         time = 0;
+        const keyboard = document.querySelectorAll('[data-key]');
         for (var j=0; j<word.length; j++){
             const iterable = j+currentTry;
             const value = lista[j];
             window.setTimeout(()=>{boxes[iterable].classList.add("animationFlip"); }, time);
             window.setTimeout(()=>{boxes[iterable].classList.add(value); }, time+300);
+            
+            keyboard.forEach(botao => {
+                if (botao.textContent == word[j]) {
+                    const currentColor = botao.style.backgroundColor;
+                    if (lista[j] == "correctBox" && currentColor != "correctBox"){
+                        botao.style.backgroundColor = optionsColor[0];
+                        botao.style.color = "white";
+                        botao.classList.add("animationPop");
+                        window.setTimeout(()=>{botao.classList.remove("animationPop")}, 150);
+                    } else 
+                    if (lista[j] == "semiCorrectBox" && currentColor != "correctBox" && currentColor != "semiCorrectBox"){
+                        botao.style.backgroundColor = optionsColor[1];
+                        botao.style.color = "white";
+                        botao.classList.add("animationPop");
+                        window.setTimeout(()=>{botao.classList.remove("animationPop")}, 150);
+                    } else {
+                        botao.style.backgroundColor = optionsColor[2];
+                        botao.style.color = "white";
+                        botao.classList.add("animationPop");
+                        window.setTimeout(()=>{botao.classList.remove("animationPop")}, 150);
+                    }
+                    }
+            })
+
             time = time + 150;
         }
         
@@ -127,11 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function credits(){
         gameEnded = true;
-        document.getElementById("container__keyboard").remove();
-        document.querySelector(".container__credits").style.visibility = "visible";
-        //document.querySelector("iframe").height = "auto";
-        document.querySelector(".container__footing").style.visibility = "visible";
-
+        document.getElementById("game__keyboard").remove();
     }
 
 
@@ -164,12 +187,47 @@ document.addEventListener("DOMContentLoaded", () => {
             if (guessedWord.length < dayWord.length) {
             guessedWord.push(letter);
             updateArray("animationPop");
-            }
+            const keyboard = document.querySelectorAll('[data-key]');
+            keyboard.forEach(botao => {
+                if (botao.textContent == fixWord(letter)) {
+                    botao.classList.add("animationPop");
+                    window.setTimeout(()=>{botao.classList.remove("animationPop")}, 150);
+                }
+            });}
         }
     }
-
-    
-
-
   });
+
+
+function createSquares(num, numTrys) {
+    const gameBoard = document.getElementById("board"); // get board Element
+    const clientHeight = document.getElementById('game__board').clientHeight;
+    const clientWidth = document.getElementById('game__board').clientWidth;
+    
+    const spaceX = clientWidth/(6*num+3);
+    const spaceY = Math.min(clientHeight/(6*numTrys+3), 1.5*spaceX);
+    const squareX = spaceX*5;
+    const squareY = Math.min(spaceY*5, squareX);
+
+
+    gameBoard.style.gridTemplateColumns = "1fr ".repeat(num) // Set Number of elements in a rows
+    // draw rows
+    for (var index = 0; index < num*numTrys; index++) {
+        const square = document.createElement("div");
+        square.classList.add("square");
+        square.setAttribute("id", index + 1);
+        gameBoard.appendChild(square);
+        square.style.width = `${0.95*squareX}px`;
+        square.style.height = `${0.95*squareY}px`;
+        square.style.fontSize = `${0.70*squareX}px`;
+    }
+    gameBoard.style.gap = `${spaceY}px ${spaceX}px`;
+    gameBoard.style.marginLeft = `${2*spaceX}px`;
+    gameBoard.style.marginRight = `${2*spaceX}px`;
+}
+
+function startAnimations(){
+    document.querySelectorAll(".square").forEach(box => {box.classList.add("animationBegin"); window.setTimeout(()=>{box.classList.remove("animationBegin")}, 400);}); // Play Fade in box Animation
+    document.querySelectorAll("[data-key]").forEach(keey => {{keey.classList.add("animationKeyboardBegin"); window.setTimeout(()=>{keey.classList.remove("animationKeyboardBegin");}, 1500);}}); // Play Fade in keyboard Animation
+}
   
