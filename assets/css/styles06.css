@@ -19,7 +19,25 @@ html {
 
 header {
     height: 7vh;
-    margin: 15px auto 1px auto;
+    margin: 2.5vh auto 0.5vh auto;
+}
+
+
+#game__notification {
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid black;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    height: 45px;
+    left: 50%;
+    line-height: 45px;
+    margin: 9.5vh 0 15px -125px;
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    width: 250px;
 }
 
 body {
@@ -45,18 +63,19 @@ main {
     flex-shrink:50;
     justify-content:center;
     overflow:auto;
-    width:100%
+    width:100%;
 }
 
 main::-webkit-scrollbar{
     background-color:transparent;
-    width:12px
+    width:12px;
 }
 
 main::-webkit-scrollbar-thumb{
     background:rgba(117, 102, 192, 0.514);
-    border-radius:6px
+    border-radius:6px;
 }
+
 
 #section__game {
     display: flex;
@@ -80,12 +99,41 @@ main::-webkit-scrollbar-thumb{
     flex-grow: 0;
     justify-content: center;
     max-height: 100%;
+    
 }
 
 .square{
     align-items: center;
-    border: 2px solid rgba(197, 189, 182, 0.637);
+    border: 2px solid rgb(197, 189, 182);
     border-radius: 8px;
+    background: rgba(156, 134, 134, 0.25);
+}
+
+.shareButton {
+    visibility: hidden;
+    background: rgba(47, 41, 49, 0.8);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid black;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-size: 17px;
+    flex-grow: 1;
+    height: 45px;
+    left: 50%;
+    bottom: 50%;
+    line-height: 45px;
+    margin-left:-140px;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    width: 280px;
+}
+
+
+.shareButton:hover {
+    transform: scale(1.15);
+    transition: all 0.05s linear;
 }
 
 
@@ -106,24 +154,27 @@ main::-webkit-scrollbar-thumb{
     text-align: center;
 }
 
-.notification {
-    color: rgb(165, 150, 230);
-    font-size: 1.6em;
-    text-align: center;
-    margin: 0.15em;
+#game__notification {
+    font-family: 'ARIAL', 'sans-serif';
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .square {
     color: rgb(255, 255, 255);
-    font-family: 'Oregano', cursive;
-    text-shadow: 1px 1px 3px black;
-    font-weight: BOLD;
+    font-family: 'Arial', cursive;
+    /* text-shadow: 1px 1px 3px black; */
+    font-weight: bold;
     text-transform: uppercase;
     display: flex;
     justify-content: center;
 }
 
-
+.game__keyboard-row button {
+    font-size: 18px;
+    font-family: 'Oregano', sans-serif;
+    font-weight: bold;
+}
 
 
 /*
@@ -135,7 +186,7 @@ main::-webkit-scrollbar-thumb{
 */
 
 #game__keyboard {
-    padding: 5px 5px 15px 5px;
+    padding: 5px 5px 25px 5px;
 }
 
 .game__keyboard-row {
@@ -147,21 +198,19 @@ main::-webkit-scrollbar-thumb{
 }
 
 .game__keyboard-row button {
-    color: rgb(80, 76, 95);
-    background-color: rgb(221, 218, 228);
-    border: 1px solid rgb(48, 44, 44);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(228, 222, 222);
     border-radius: 6px;
-    box-shadow: 1px 1px 1px black;
+    /* box-shadow: 1px 0px 1px black; */
     cursor: pointer;
     flex-grow: 1;
-    font-size: 18px;
-    font-family: 'Russo One', sans-serif;
     margin: 3px;
     padding: 0;
     height: 35px;
     max-width: 50px;
     text-transform: uppercase;
     vertical-align: bottom;
+    background: rgba(156, 134, 134, 0.25);
 }
 
 .game__keyboard-row button:hover {
@@ -190,7 +239,7 @@ main::-webkit-scrollbar-thumb{
 .title {
     opacity: 0;
     transform: translateY(-25px);
-    animation-name: slide;
+    animation-name: introSlide;
     animation-fill-mode: forwards;
     animation-timing-function: ease;
     animation-delay: 0.45s;
@@ -206,7 +255,15 @@ main::-webkit-scrollbar-thumb{
 }
 
 .wrongBox {
-    background-color: rgb(122, 122, 131);
+    background-color: rgb(100, 100, 110);
+}
+
+.animationNotification{
+    animation-name: popAlert;
+    animation-duration: 2.0s;
+    animation-delay: 0s; 
+    animation-fill-mode: forwards;
+    animation-direction: normal;
 }
 
 .animationNope {
@@ -218,7 +275,7 @@ main::-webkit-scrollbar-thumb{
 }
 
 .animationBegin {
-    animation-name: cardEntrance;
+    animation-name: introPop;
     animation-fill-mode: backwards;
     animation-timing-function: ease-out;
     animation-delay: 0.1s;
@@ -227,7 +284,7 @@ main::-webkit-scrollbar-thumb{
 
 .animationKeyboardBegin{
     opacity: 0;
-    animation-name: cardEntrance;
+    animation-name: introPop;
     animation-fill-mode: forwards;
     animation-timing-function: ease-out;
     animation-delay: 1s;
@@ -241,6 +298,13 @@ main::-webkit-scrollbar-thumb{
     animation-duration: 80ms;
 }
 
+.animationKBDPop{
+    animation-name: pop;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-duration: 150ms;
+}
+
 .animationFlip {
     animation-name: flip;
     animation-duration: 0.6s;
@@ -248,8 +312,21 @@ main::-webkit-scrollbar-thumb{
     animation-timing-function: ease-in-out;
 }
 
+.animationEndGame {
+    animation-name: endGameButton;
+    animation-duration: 1s;
+    animation-direction: normal;
+}
 
-@keyframes slide {
+.animationKeyBoardGone {
+    animation-name: keyboardGone;
+    animation-duration: 0.5s;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes introSlide {
     from {
         opacity: 0; 
     }
@@ -259,7 +336,7 @@ main::-webkit-scrollbar-thumb{
     }
 }
 
-@keyframes cardEntrance {
+@keyframes introPop {
     from {
         opacity: 0;
         transform: scale(0.3);
@@ -271,7 +348,7 @@ main::-webkit-scrollbar-thumb{
     }
 }
 
-@keyframes nope{
+@keyframes nope {
     10%{
     transform:translateX(-13px); 
     } 20%{ transform:translateX(13px); 
@@ -296,4 +373,26 @@ main::-webkit-scrollbar-thumb{
     0%{ transform: rotateX(0deg);
     } 50% { transform: rotateX(90deg);
     } 100%{ transform: rotateX(0deg);}
+}
+
+@keyframes popAlert {
+    0% {opacity: 0; transform:translateY(25px) scale(0.6); 
+    } 5% { opacity:1; 
+    } 30%{ transform: translateY(10px); 
+    } 80%{ opacity:1; 
+    } 100%{ opacity: 0; transform: translateY(10px);}
+}
+
+@keyframes endGameButton {
+    0%{
+    } 50%{
+
+    } 100%{
+
+    }
+}
+
+@keyframes keyboardGone{
+    from{ transform: scale(1.0);
+    } to{ transform: scale(0);}
 }
