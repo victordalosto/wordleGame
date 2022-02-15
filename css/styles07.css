@@ -1,0 +1,389 @@
+
+/*
+*
+*
+*  GENERAL LAYOUT
+*
+*
+*/
+
+html {
+    /* background: linear-gradient(135deg, rgb(252, 70, 107), rgb(45, 77, 236)) no-repeat; */
+    background: radial-gradient(circle at 1% 1%, rgb(252, 70, 107) 0px, rgb(233, 42, 150) 25%, rgb(110, 66, 180) 80%, rgb(39, 69, 218) 90%, rgb(23, 42, 136) 100%); 
+    height: 100%;
+    line-height: 1.15;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+header {
+    height: 7vh;
+    margin: 2.5vh auto 0.5vh auto;
+}
+
+
+#game__notification {
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid black;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    height: 45px;
+    left: 50%;
+    line-height: 45px;
+    margin: 9.5vh 0 15px -125px;
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    width: 250px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0 auto 0 auto;
+    max-width: 720px;
+    width: 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-sevlect: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 50;
+    justify-content: center;
+    overflow: auto;
+    width: 100%;
+}
+
+main::-webkit-scrollbar{
+    background-color: transparent;
+    width: 12px;
+}
+
+main::-webkit-scrollbar-thumb{
+    background: rgba(117, 102, 192, 0.514);
+    border-radius: 6px;
+}
+
+
+#section__game {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+#game__board {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+#board {
+    align-content: center;
+    display: grid;
+    flex-grow: 0;
+    justify-content: center;
+    max-height: 100%;
+}
+
+.square{
+    align-items: center;
+    background: rgba(156, 134, 134, 0.25);
+    border: 2px solid rgb(197, 189, 182);
+    border-radius: 8px;
+}
+
+.shareButton {
+    background: rgba(41, 47, 49, 0.8);
+    border: 1px solid black;
+    border-radius: 10px;
+    bottom: 50%;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    flex-grow: 1;
+    font-family: 'Oregano', sans-serif;
+    font-size: 17px;
+    height: 45px;
+    left: 50%;
+    line-height: 45px;
+    margin-left: -140px;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    visibility: hidden;
+    width: 280px;
+}
+
+
+.shareButton:hover {
+    transform: scale(1.15);
+    transition: all 0.05s linear;
+}
+
+
+
+
+/*
+*
+*
+*  TEXT STYLES
+*
+*
+*/
+
+.title {
+    color: rgb(255, 255, 255);
+    font-family: 'Sedgwick Ave Display', cursive;
+    font-size: 7vh;
+    text-align: center;
+}
+
+#game__notification {
+    font-family: 'ARIAL', 'sans-serif';
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.square {
+    color: rgb(255, 255, 255);
+    display: flex;
+    font-family: 'Arial', cursive;
+    font-weight: bold;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.game__keyboard-row button {
+    font-size: 18px;
+    font-family: 'Oregano', sans-serif;
+    font-weight: bold;
+}
+
+
+/*
+*
+*
+*  KEYBOARD
+*
+*
+*/
+
+#game__keyboard {
+    padding: 5px 5px 25px 5px;
+}
+
+.game__keyboard-row {
+    display: flex;
+    justify-content: center;
+    margin: 0px auto;
+    touch-action: manipulation;
+    width: 100%;
+}
+
+.game__keyboard-row button {
+    background: rgba(156, 134, 134, 0.25);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    border: 1px solid rgb(228, 222, 222);
+    border-radius: 6px;
+    flex-grow: 1;
+    height: 35px;
+    margin: 3px;
+    max-width: 50px;
+    opacity: 0;
+    padding: 0;
+    text-transform: uppercase;
+    vertical-align: bottom;
+}
+
+.game__keyboard-row button:hover {
+    font-size: 23px;
+    margin: 1px 3px 1px 3px;
+    transform: scale(1.15);
+    transition: all 0.05s linear;
+}
+
+.game__keyboard-row button.enter-button {
+    max-width: 105px;
+    justify-content: right;
+}
+
+
+
+
+/*
+*
+*
+*  ANIMATIONS
+*
+*
+*/
+
+.title {
+    animation-name: titleSlide;
+    animation-delay: 0.45s;
+    animation-duration: 0.65s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease;
+    opacity: 0;
+    transform: translateY(-25px);
+}
+
+.animationNotification{
+    animation-name: popNotification;
+    animation-duration: 2.0s;
+}
+
+.animationNope {
+    animation-name: nope;
+    animation-duration: 0.8s;
+}
+
+.animationBegin {
+    animation-name: introPop;
+    animation-fill-mode: backwards;
+    animation-timing-function: ease-out;
+    animation-delay: 0.1s;
+    animation-duration: 0.25s;
+}
+
+.animationKeyboardBegin{
+    animation-name: introPop;
+    animation-delay: 1s;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+}
+
+.animationPop{
+    animation-name: pop;
+    animation-duration: 80ms;
+    animation-timing-function: ease-in-out;
+}
+
+.animationKBDPop{
+    animation-name: pop;
+    animation-duration: 150ms;
+    animation-timing-function: ease-in-out;
+}
+
+.animationFlip {
+    animation-name: flip;
+    animation-duration: 0.6s;
+    animation-timing-function: ease-in-out;
+}
+
+.animationEndGameWin {
+    animation-name: endGameButtonWin;
+    animation-duration: 0.25s;
+    animation-timing-function: ease;
+}
+
+.animationEndGameLose {
+    animation-name: nope;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+}
+.animationKeyboardGone {
+    animation-name: keyboardGone;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.correctBox {
+    background-color: rgb(59, 153, 50);
+}
+
+.semiCorrectBox {
+    background-color: rgb(211, 178, 32);
+}
+
+.wrongBox {
+    background-color: rgb(90, 90, 100);
+}
+
+@keyframes titleSlide {
+    from {
+        opacity: 0; 
+    } to {
+        transform: translateY(0);
+        opacity: 1;
+}}
+
+@keyframes introPop {
+    from {
+        opacity: 0;
+        transform: scale(0.3);
+        filter: hue-rotate(75deg);
+    } to {
+        opacity: 1;
+        transform: scale(1);
+        filter: hue-rotate(0deg);
+}}
+
+@keyframes nope {
+      10% { transform: translateX(-13px); 
+    } 20% { transform: translateX(13px); 
+    } 30% { transform: translateX(-8px); 
+    } 40% { transform: translateX(8px); 
+    } 50% { transform: translateX(-5px); 
+    } 60% { transform: translateX(5px); 
+    } 70% { transform: translateX(-2px); 
+    } 80% { transform: translateX(2px); 
+    } 90% { transform: translateX(-1px); 
+    } 95% { transform: translateX(1px); 
+    } to  { transform: translateX(0);}
+}
+
+@keyframes pop {
+    1%{ transform: scale(1);
+    } 20%{ transform: scale(1.25);
+    } 100%{ transform: scale(1); }
+}
+
+@keyframes flip {
+    0%{ transform: rotateX(0deg);
+    } 50% { transform: rotateX(90deg);
+    } 100%{ transform: rotateX(0deg);}
+}
+
+@keyframes popNotification {
+      0%  {opacity: 0; transform: translateY(25px) scale(0.6); 
+    } 5%  { opacity: 1; 
+    } 30% { transform: translateY(10px); 
+    } 80% { opacity: 1; 
+    } to  { opacity: 0; transform: translateY(10px);}
+}
+
+@keyframes endGameButtonWin {
+      10% { transform:translateY(-6px)
+    } 20% { transform:translateY(-11.6px)
+    } 30% { transform:translateY(-16px)
+    } 40% { transform:translateY(-19px)
+    } 50% { transform:translateY(-20px)
+    } 60% { transform:translateY(-19px)
+    } 70% { transform:translateY(-16px)
+    } 80% { transform:translateY(-11.6px)
+    } 90% { transform:translateY(-6px)
+    } to  { transform:translateY(0)
+    }
+}
+
+@keyframes keyboardGone{
+    from { transform: scale(1.0);
+    } to { transform: scale(0);}
+}
