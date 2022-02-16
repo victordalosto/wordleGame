@@ -16,17 +16,34 @@
 <body>
     <main>
         <container id="howToPlay" class="overlayContainer">
+          <p style="text-align: center; margin-top: 25px; margin-bottom: 5px;" class="overlayText">Jogo web baseado no <strong>Wordle</strong></p><br>
+          <p class="overlayText">Todo dia uma palavra do <strong><a style="color: rgb(250, 80, 110)">F</a><a style="color: rgb(240, 70, 130)">U</a><a style="color: rgb(235, 60, 140)">N</a><a style="color: rgb(230, 50, 150)">K</a></strong></p>
+          <p class="overlayText">Adivinhe a palavra em <strong><a style="color: rgb(216, 173, 182)">6</a></strong> tentativas.</p>
+          <p class="overlayText">A cada tentativa, a cor dos quadrados mostram o quão perto você está da palavra correta.</p><br>
+          <hr class="lineSolid">
+          <p class="overlayText"><strong>Exemplo:</strong></p>
+          <div id="howToSquare"></div> <br><br>
+          <div class="howToLastText"><div class="howToLast" id="howToSquare1"></div><p class="overlayText"> Indica que a palavra tem <strong style="color: rgb(195, 184, 186)">V</strong> e está na posição correta.</p></div><br><br>
+          <div class="howToLastText"><div class="howToLast" id="howToSquare2"></div><p class="overlayText"> Indica que a palavra tem a letra <strong style="color: rgb(195, 184, 186)">I</strong>, mas está na posição errada.</p></div><br><br>
+          <div class="howToLastText"><div class="howToLast" id="howToSquare3"></div><p class="overlayText"> Mostra que a palavra não tem as letras <strong style="color: rgb(195, 184, 186)">E, O, L</strong> ou <strong style="color: rgb(195, 184, 186)">U</strong></p></div><br><br>
         </container>
-        <container id="howToPlay" class="overlayContainer">
-        </container>
-        <container id="howToPlay" class="overlayContainer">
-        </container>
+        
+        <container id="ranking" class="overlayContainer">
+          </container>
+
+        <container id="credits" class="overlayContainer" style="visibility: visible;">
+          <p style="text-align: center; margin-top: 25px; margin-bottom: 5px;" class="overlayText">Creditos</p><br><br>
+          <hr class="lineSolid">
+          <p class="overlayText">Desenvolvedor: <strong><a href="https://github.com/victordalosto" class="nameCredit" style="color: rgb(250, 100, 150); text-decoration: underline;">Victor Dalosto</a></strong></p>
+          <p class="overlayText">Hospedagem: <strong><a href="https://github.com/HKRAGD" class="nameCredit" style="color: rgb(250, 100, 150); text-decoration: underline;">Rodrigo Dalosto</a></strong></p><br>
+          <p class="overlayText">Contribuições com palavras do dia: <a style="color: rgb(250, 100, 150);">Julia Porto</a>,  <a style="color: rgb(250, 100, 150);">Juliana Cardoso</a>, <a style="color: rgb(250, 100, 150);">Jordana Vieira</a>.</p><br>
+       </container>
 
         <section id="section__game">
             <header>
                 <div class="title">MC Aurelio</div>
             </header>
-
+            
             <div id="game__notification">
               <div class="notification"></div>
             </div>

@@ -23,7 +23,6 @@ header {
     margin: 2.5vh auto 0.5vh auto;
 }
 
-
 #game__notification {
     background: rgba(0, 0, 0, 0.7);
     border: 1px solid black;
@@ -76,6 +75,13 @@ main::-webkit-scrollbar-thumb{
     border-radius: 6px;
 }
 
+.overlayContainer {
+    visibility: hidden;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.87);
+    margin-bottom: 120px;
+    border-radius: 30px;
+}
 
 #section__game {
     display: flex;
@@ -128,12 +134,19 @@ main::-webkit-scrollbar-thumb{
     width: 280px;
 }
 
-
 .shareButton:hover {
     transform: scale(1.15);
     transition: all 0.05s linear;
 }
 
+#howToSquare{
+    display: grid;
+    margin: 0 0 0 0;
+}
+
+#howToPlay{
+    margin-top: 12vh;
+}
 
 
 
@@ -173,6 +186,31 @@ main::-webkit-scrollbar-thumb{
     font-weight: bold;
 }
 
+.overlayContainer p {
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    text-align: left;
+    margin: 1px 20px 25px 20px;
+}
+
+
+.lineSolid {
+    margin: -18px 12px 20px 12px;
+}
+
+
+.howToLastText {
+    display: table;
+}
+
+.howToLastText p {
+    margin-left: 0px;
+    margin-right: 15px;
+    display:table-cell;
+}
+
+
 
 /*
 *
@@ -183,7 +221,7 @@ main::-webkit-scrollbar-thumb{
 */
 
 #game__keyboard {
-    padding: 5px 5px 25px 5px;
+    padding: 5px 5px 15px 5px;
 }
 
 .game__keyboard-row {
@@ -201,9 +239,9 @@ main::-webkit-scrollbar-thumb{
     border: 1px solid rgb(228, 222, 222);
     border-radius: 6px;
     flex-grow: 1;
-    height: 35px;
+    height: 45px;
     margin: 3px;
-    max-width: 50px;
+    max-width: 70px;
     opacity: 0;
     padding: 0;
     text-transform: uppercase;
@@ -221,6 +259,20 @@ main::-webkit-scrollbar-thumb{
     max-width: 105px;
     justify-content: right;
 }
+
+.nameCredit:hover {
+    font-size: 21px;
+    transition: 0.15s;
+}
+
+.nameCredit, .nameCredit a, .nameCredit a:visited, .nameCredit a:active {
+    color: white;
+	text-decoration: none;
+    font-size: 18px;
+    margin-top: 25px;
+    margin-bottom: 12px;
+}
+
 
 
 

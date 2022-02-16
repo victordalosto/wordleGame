@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const notifications = document.getElementById("game__notification");
     const keyboard = document.querySelectorAll('[data-key]');
     const shareButton = document.querySelectorAll(".shareButton");
+    const containerHowToPlay = document.getElementById("howToPlay");
+    const containerRaking = document.getElementById("ranking");
+    const containerCredits = document.getElementById("credits");
     createSquares(dayWord.length, numTrys);
     startAnimations();
    
@@ -30,14 +33,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function that play start animations on screen
     function startAnimations(){
-        document.querySelectorAll(".square").forEach(box => {box.classList.add("animationBegin"); window.setTimeout(()=>{box.classList.remove("animationBegin")}, 400);}); // Play Fade in box Animation
+        document.querySelectorAll(".playableSquare").forEach(box => {box.classList.add("animationBegin"); window.setTimeout(()=>{box.classList.remove("animationBegin")}, 400);}); // Play Fade in box Animation
         keyboard.forEach(keey => {{keey.classList.add("animationKeyboardBegin"); window.setTimeout(()=>{keey.style.opacity = "1"; keey.classList.remove("animationKeyboardBegin");}, 1500);}}); // Play Fade in keyboard Animation
+        howToPlayOverlayer();    
+        howToPlaySquares();
+
     }
+
+
+   
 
 
     // Add listener to document for typing on screen and clicking buttons
     document.addEventListener('keydown', event => {keyPressed(event.key);})
-    for (var i = 0; i < keys.length; i++) { // Add listener to keys typed on browser
+    for (let i = 0; i < keys.length; i++) { // Add listener to keys typed on browser
         keys[i].onclick = ({ target }) => {keyPressed(target.getAttribute("data-key"));}
     }
 
@@ -50,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // update the UI squares with the array digited
     function updateSquares(animeType) {
-        const boxes = document.querySelectorAll(".square");
-        for (var i=0; i<dayWord.length; i++){
+        const boxes = document.querySelectorAll(".playableSquare");
+        for (let i=0; i<dayWord.length; i++){
             if (i < guessedWord.length){
                 boxes[i+currentTry].textContent = guessedWord[i];
             } else {
@@ -66,8 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Function that check the amount of boxes to tag yellow (semiCorrect)
     function checkYellowBox(word, fixedDayWord, j){
-        var nDayWord = 0;
-        var ncurrentN = 0;
+        let nDayWord = 0;
+        let ncurrentN = 0;
         totalCorrect = 0;
         for (n=0; n<word.length; n++){
             if(fixedDayWord[n] == word[j]){
@@ -87,11 +96,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function that handle the array after pressed Enter
     function handleAfterEnter(word, fixedDayWord) {
-        const boxes = document.querySelectorAll(".square");
+        const boxes = document.querySelectorAll(".playableSquare");
         const lista = [];
         const CT = currentTry; // Avoid setTimeout animations problems
         letter_loop:
-        for (var j=0; j<word.length; j++){
+        for (let j=0; j<word.length; j++){
             if(word[j] == fixedDayWord[j]){
                 lista.push("correctBox");
             } else {
@@ -104,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }}}}
         // Loop that update Squares and keyBoard buttons color
         let time = 0; 
-        for (var j=0; j<word.length; j++){
+        for (let j=0; j<word.length; j++){
             const iterable = j+currentTry;
             const value = lista[j];
             window.setTimeout(()=>{boxes[iterable].classList.add("animationFlip")}, time);
@@ -139,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Function that plays when the game ended
     function credits(word){
         gameEnded = true;
-        const boxes = document.querySelectorAll(".square");
+        const boxes = document.querySelectorAll(".playableSquare");
         let time = 0;
         let animationType;
         if (fixWord(word) == fixWord(dayWord)){
@@ -181,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     notifications.textContent = possibleAlerts[Math.floor(Math.random()*possibleAlerts.length)];
                     window.setTimeout(()=>{notifications.classList.remove("animationNotification")}, 2100)
                 }
-                var boxes = document.querySelectorAll(".square") 
+                let boxes = document.querySelectorAll(".playableSquaree") 
                 for (let j=0; j< dayWord.length; j++) {
                     const iterable = j+currentTry;
                     boxes[iterable].classList.add("animationNope");
@@ -208,15 +217,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const gameBoard = document.getElementById("board"); // get board Element
         const clientHeight = document.getElementById('game__board').clientHeight;
         const clientWidth = document.getElementById('game__board').clientWidth;
-        const spaceX = clientWidth/(6*num+3);
-        const spaceY = Math.min(clientHeight/(6*numTrys+9), 1.5*spaceX);
+        const spaceX = clientWidth/(6*num+7);
+        const spaceY = Math.min(clientHeight/(6*numTrys+3), 1.5*spaceX);
         const squareX = Math.min(spaceY*5, spaceX*5);
         const squareY = Math.min(spaceY*5, spaceX*5);
         gameBoard.style.gridTemplateColumns = "1fr ".repeat(num) // Set Number of elements in a rows
         // draw rows
-        for (var index = 0; index < num*numTrys; index++) {
+        for (let index = 0; index < num*numTrys; index++) {
             const square = document.createElement("div");
             square.classList.add("square");
+            square.classList.add("playableSquare")
             square.setAttribute("id", index + 1);
             gameBoard.appendChild(square);
             square.style.width = `${0.90*squareX}px`;
@@ -224,18 +234,18 @@ document.addEventListener("DOMContentLoaded", () => {
             square.style.fontSize = `${0.6*squareX}px`;
         }
         gameBoard.style.gap = `${spaceY}px ${spaceX}px`;
-        gameBoard.style.marginLeft = `${5*spaceX}px`;
-        gameBoard.style.marginRight = `${5*spaceX}px`;
+        gameBoard.style.marginLeft = `${4*spaceX}px`;
+        gameBoard.style.marginRight = `${4*spaceX}px`;
     }
     
 
     // Function that get todays Word in the data.json file
     function todaysWord(){
         const today = new Date();
-        var dateDay = today.getDate();
-        var dateMonth = today.getMonth()+1;
+        let dateDay = today.getDate();
+        let dateMonth = today.getMonth()+1;
         const dateYear = today.getFullYear();
-        var word = "TOP";
+        let word = "TOP";
         if (dateDay < 10){
             dateDay = "0" + dateDay;}
         if (dateMonth < 10){
@@ -244,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const request = new XMLHttpRequest();
         request.open("GET", '../data.json', false)
         request.send(null);
-        var wordsList = JSON.parse(request.responseText);
+        let wordsList = JSON.parse(request.responseText);
         wordsList = wordsList.FUNKWORDS;
         wordsList.forEach((funkdodia)=>{
             if (funkdodia.DATA == fullDate){
@@ -260,7 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const boxWrong = "⬛";
         const possibleTitles = ["So baixaria no", "Joguei o", "Arrasei no", "Deitei no", "Sarrei no", "Rebolei no", "Martelei no"];
         const title = possibleTitles[Math.floor(Math.random()*possibleTitles.length)];
-        const boxes = document.querySelectorAll(".square")
+        const boxes = document.querySelectorAll(".playableSquare")
         const matrixBoxes = [];
         boxes.forEach(box =>{
             if (box.classList.contains("correctBox")){
@@ -285,5 +295,68 @@ document.addEventListener("DOMContentLoaded", () => {
             notifications.textContent = "Copiado para ctrl+V";
             window.setTimeout(()=>{notifications.classList.remove("animationNotification")}, 2500);
     })}
+
+
+
+    // Create squares in the Tutorial overlayer (id=HowToPlay)
+    function howToPlaySquares() {
+        const arrayTuto = ['E', 'V', 'O', 'L', 'U', 'I', 'U']
+        const arrayTutoColors = [optionsColor[2], optionsColor[0], optionsColor[2], optionsColor[2], optionsColor[2], optionsColor[1], optionsColor[2]];
+        const num = arrayTuto.length
+        const gameBoard = document.getElementById("howToSquare"); // get board Element
+        const spaceX = document.getElementById('howToPlay').clientWidth/(6*num+9);
+        const squareX = spaceX*5;
+        gameBoard.style.gridTemplateColumns = "1fr ".repeat(num) // Set Number of elements in a rows
+        // draw rows
+        for (let index = 0; index < num; index++) {
+            const square = document.createElement("div");
+            square.classList.add("square");
+            gameBoard.appendChild(square);
+            square.textContent = arrayTuto[index];
+            square.style.backgroundColor = arrayTutoColors[index];
+            square.style.width = `${0.80*squareX}px`;
+            square.style.height = `${0.80*squareX}px`;
+            square.style.fontSize = `${0.6*squareX}px`;
+        }
+        gameBoard.style.gap = `${spaceX}px`;
+        gameBoard.style.marginLeft = `${5*spaceX}px`;
+        gameBoard.style.marginRight = `${5*spaceX}px`;
+        const tutosLetters = ['V', 'I', '⠀']
+        const tutos = [document.getElementById("howToSquare1"), document.getElementById("howToSquare2"), document.getElementById("howToSquare3")]; 
+        const tutosColors = [optionsColor[0], optionsColor[1], optionsColor[2]];
+        for (let index = 0; index < 3 ; index++){
+            const square = document.createElement("div");
+            square.classList.add("square");
+            tutos[index].appendChild(square);
+            square.textContent = tutosLetters[index];
+            square.style.backgroundColor = tutosColors[index];
+            square.style.width = `${0.80*squareX}px`;
+            square.style.height = `${0.80*squareX}px`;
+            square.style.fontSize = `${0.6*squareX}px`;
+            tutos[index].style.marginLeft = `15px`;
+            tutos[index].style.marginRight = `${spaceX}px`;
+    }}
+
+
+    // Function that fixes the overLayContainer how To Tutorial
+    function howToPlayOverlayer(){
+        const altura = (23/24 - document.getElementById('game__board').clientHeight/2300)*100;
+        const fonte = document.getElementById('game__board').clientHeight/120 + 77/6;
+        document.querySelectorAll(".overlayText").forEach(text => {text.style.fontSize = `${fonte}px`})
+        containerHowToPlay.style.height = `${altura}%`;
+        containerHowToPlay.style.width = `${document.getElementById('game__board').clientWidth*0.88}px`;
+    }
+
+
+    document.addEventListener('click', (event) => {
+        if (event.target.id != containerHowToPlay.id){
+            containerHowToPlay.style.visibility = "hidden";
+        }
+
+        if (event.target == keyboard){
+            console.log("keyboard")
+        }
+    })
+
 
 })
