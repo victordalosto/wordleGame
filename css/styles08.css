@@ -19,8 +19,23 @@ html {
 }
 
 header {
+    display: flex;
     height: 7vh;
+    justify-content: center;
+    align-items: center;
     margin: 2.5vh auto 0.5vh auto;
+}
+
+@media screen and (min-width: 0){
+    header{
+        grid-gap: 0 35px;
+    }
+}
+
+@media screen and (min-width: 430px){
+    header{
+        grid-gap: 0 80px;
+    }
 }
 
 #game__notification {
@@ -83,6 +98,15 @@ main::-webkit-scrollbar-thumb{
     border-radius: 30px;
 }
 
+#credits {
+    width: 80%;
+    text-align: center;
+}
+
+.crd {
+    text-align: center;;
+}
+
 #section__game {
     display: flex;
     flex-direction: column;
@@ -122,10 +146,10 @@ main::-webkit-scrollbar-thumb{
     cursor: pointer;
     flex-grow: 1;
     font-family: 'Oregano', sans-serif;
-    font-size: 17px;
-    height: 45px;
+    font-size: 25px;
+    height: 65px;
     left: 50%;
-    line-height: 45px;
+    line-height: 65px;
     margin-left: -140px;
     position: relative;
     text-align: center;
@@ -148,6 +172,29 @@ main::-webkit-scrollbar-thumb{
     margin-top: 12vh;
 }
 
+.buttonHeader{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 2px solid white;
+    box-shadow: 0 0 1px black;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    height: 45px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-shadow: 0px 0px 2px black;
+    font-family: arial, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    width: 45px;
+}
+
+.buttonHeader:hover {
+    transform: scale(1.5);
+    transition: 0.12s;
+}
+
 
 
 /*
@@ -161,7 +208,7 @@ main::-webkit-scrollbar-thumb{
 .title {
     color: rgb(255, 255, 255);
     font-family: 'Sedgwick Ave Display', cursive;
-    font-size: 7vh;
+    /* font-size: 80px; */
     text-align: center;
 }
 
@@ -213,7 +260,20 @@ main::-webkit-scrollbar-thumb{
 
 
 /*
-*
+*#game__board {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+#board {
+    align-content: center;
+    display: grid;
+    flex-grow: 0;
+    justify-content: center;
+    max-height: 100%;
+}
 *
 *  KEYBOARD
 *
@@ -221,12 +281,15 @@ main::-webkit-scrollbar-thumb{
 */
 
 #game__keyboard {
-    padding: 5px 5px 15px 5px;
+    padding: 5px 5px 10px 5px;
 }
 
 .game__keyboard-row {
     display: flex;
+    float:right;
+    flex-grow: 1;
     justify-content: center;
+    align-items: center;
     margin: 0px auto;
     touch-action: manipulation;
     width: 100%;
@@ -245,7 +308,6 @@ main::-webkit-scrollbar-thumb{
     opacity: 0;
     padding: 0;
     text-transform: uppercase;
-    vertical-align: bottom;
 }
 
 .game__keyboard-row button:hover {
@@ -261,7 +323,7 @@ main::-webkit-scrollbar-thumb{
 }
 
 .nameCredit:hover {
-    font-size: 21px;
+    text-decoration: underline;
     transition: 0.15s;
 }
 
@@ -271,6 +333,19 @@ main::-webkit-scrollbar-thumb{
     font-size: 18px;
     margin-top: 25px;
     margin-bottom: 12px;
+}
+
+.closeButton {
+    position: absolute;
+    right: 3px;
+    width: 35px;
+    height: 35px;
+    font-size: 25px;
+    border-radius: 20%;
+    background: rgb(121, 94, 121);
+    border: 1px solid rgb(42, 40, 40);
+    text-align: center;
+
 }
 
 

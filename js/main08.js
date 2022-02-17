@@ -20,9 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const containerRaking = document.getElementById("ranking");
     const containerCredits = document.getElementById("credits");
     createSquares(dayWord.length, numTrys);
-    startAnimations();
+    startLayout();
    
-
     
     /*
     *
@@ -32,18 +31,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // Function that play start animations on screen
-    function startAnimations(){
+    function startLayout(){
         document.querySelectorAll(".playableSquare").forEach(box => {box.classList.add("animationBegin"); window.setTimeout(()=>{box.classList.remove("animationBegin")}, 400);}); // Play Fade in box Animation
         keyboard.forEach(keey => {{keey.classList.add("animationKeyboardBegin"); window.setTimeout(()=>{keey.style.opacity = "1"; keey.classList.remove("animationKeyboardBegin");}, 1500);}}); // Play Fade in keyboard Animation
         howToPlayOverlayer();    
         howToPlaySquares();
-
+        creditsOverlayer();
+        document.querySelectorAll(".title")[0].style.fontSize = `${((10*document.getElementById('game__board').clientWidth-655)/77)}px`
     }
 
-
-   
-
-
+    
     // Add listener to document for typing on screen and clicking buttons
     document.addEventListener('keydown', event => {keyPressed(event.key);})
     for (let i = 0; i < keys.length; i++) { // Add listener to keys typed on browser
@@ -217,10 +214,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const gameBoard = document.getElementById("board"); // get board Element
         const clientHeight = document.getElementById('game__board').clientHeight;
         const clientWidth = document.getElementById('game__board').clientWidth;
-        const spaceX = clientWidth/(6*num+7);
-        const spaceY = Math.min(clientHeight/(6*numTrys+3), 1.5*spaceX);
-        const squareX = Math.min(spaceY*5, spaceX*5);
-        const squareY = Math.min(spaceY*5, spaceX*5);
+        const spaceX = clientWidth/(9*num+3);
+        const spaceY = Math.min(clientHeight/(9*numTrys+3), 1.5*spaceX);
+        const squareX = Math.min(spaceY*8, spaceX*8);
+        const squareY = Math.min(spaceY*8, spaceX*8);
         gameBoard.style.gridTemplateColumns = "1fr ".repeat(num) // Set Number of elements in a rows
         // draw rows
         for (let index = 0; index < num*numTrys; index++) {
@@ -234,8 +231,8 @@ document.addEventListener("DOMContentLoaded", () => {
             square.style.fontSize = `${0.6*squareX}px`;
         }
         gameBoard.style.gap = `${spaceY}px ${spaceX}px`;
-        gameBoard.style.marginLeft = `${4*spaceX}px`;
-        gameBoard.style.marginRight = `${4*spaceX}px`;
+        gameBoard.style.marginLeft = `${2*spaceX}px`;
+        gameBoard.style.marginRight = `${2*spaceX}px`;
     }
     
 
@@ -348,15 +345,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    // Function that fixes the overLayContainer how To Tutorial
+    function creditsOverlayer(){
+        containerCredits.style.width = `${(12494 - document.getElementById('game__board').clientWidth*14)/77}%`;
+    }
+
+
+    // Pop and hide oerlayers
     document.addEventListener('click', (event) => {
-        if (event.target.id != containerHowToPlay.id){
+        if (event.target.id != containerHowToPlay.id && event.target.id != "buttonHowToPlay"){
             containerHowToPlay.style.visibility = "hidden";
         }
 
-        if (event.target == keyboard){
-            console.log("keyboard")
+        if (event.target.id != containerCredits.id && event.target.id != "buttonCredits"){
+            containerCredits.style.visibility = "hidden";
+        }
+
+        if (event.target.id == "buttonHowToPlay"){
+            containerHowToPlay.style.visibility = "visible";
+        }
+
+        if (event.target.id == "buttonCredits"){
+            containerCredits.style.visibility = "visible";
         }
     })
-
 
 })

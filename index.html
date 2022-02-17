@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <link rel="canonical" href="https://mcaurelio.com/">
     <link rel="shortcut icon" href="/imgs/icon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/styles07.css">
+    <link rel="stylesheet" href="css/styles08.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oregano&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
@@ -16,6 +15,7 @@
 <body>
     <main>
         <container id="howToPlay" class="overlayContainer">
+          <button class="closeButton">X</button>
           <p style="text-align: center; margin-top: 25px; margin-bottom: 5px;" class="overlayText">Jogo web baseado no <strong>Wordle</strong></p><br>
           <p class="overlayText">Todo dia uma palavra do <strong><a style="color: rgb(250, 80, 110)">F</a><a style="color: rgb(240, 70, 130)">U</a><a style="color: rgb(235, 60, 140)">N</a><a style="color: rgb(230, 50, 150)">K</a></strong></p>
           <p class="overlayText">Adivinhe a palavra em <strong><a style="color: rgb(216, 173, 182)">6</a></strong> tentativas.</p>
@@ -31,17 +31,20 @@
         <container id="ranking" class="overlayContainer">
           </container>
 
-        <container id="credits" class="overlayContainer" style="visibility: visible;">
-          <p style="text-align: center; margin-top: 25px; margin-bottom: 5px;" class="overlayText">Creditos</p><br><br>
+        <container id="credits" class="overlayContainer">
+          <button class="closeButton">X</button>
+          <p style="text-align: center; margin-top: 25px; margin-bottom: 5px;" class="overlayText">Créditos</p><br><br>
           <hr class="lineSolid">
-          <p class="overlayText">Desenvolvedor: <strong><a href="https://github.com/victordalosto" class="nameCredit" style="color: rgb(250, 100, 150); text-decoration: underline;">Victor Dalosto</a></strong></p>
-          <p class="overlayText">Hospedagem: <strong><a href="https://github.com/HKRAGD" class="nameCredit" style="color: rgb(250, 100, 150); text-decoration: underline;">Rodrigo Dalosto</a></strong></p><br>
-          <p class="overlayText">Contribuições com palavras do dia: <a style="color: rgb(250, 100, 150);">Julia Porto</a>,  <a style="color: rgb(250, 100, 150);">Juliana Cardoso</a>, <a style="color: rgb(250, 100, 150);">Jordana Vieira</a>.</p><br>
+          <p class="overlayText" style="text-align: center;">Desenvolvedor: <strong><a href="https://github.com/victordalosto" class="nameCredit" style="color: rgb(250, 100, 150);">Victor Dalosto</a></strong></p>
+          <p class="overlayText" style="text-align: center;">Hospedagem: <strong><a href="https://github.com/HKRAGD" class="nameCredit" style="color: rgb(250, 100, 150);">Rodrigo Dalosto</a></strong></p><br>
+          <p class="overlayText" style="text-align: center;">Contribuição com palavras: <br><a style="color: rgb(250, 100, 150);">Julia Porto</a>,  <br><a style="color: rgb(250, 100, 150);">Juliana Cardoso</a>, <br><a style="color: rgb(250, 100, 150);">Jordana Vieira</a>.</p><br>
        </container>
 
         <section id="section__game">
             <header>
+                <button class="buttonHeader" id="buttonHowToPlay">?</button>
                 <div class="title">MC Aurelio</div>
+                <button class="buttonHeader" id ="buttonCredits">C</button>
             </header>
             
             <div id="game__notification">
@@ -93,6 +96,6 @@
             </div>
         </section>
     </main>
-  <script src="js/main07.js"></script> 
+  <script src="js/main08.js"></script> 
 </body>
 </html>
