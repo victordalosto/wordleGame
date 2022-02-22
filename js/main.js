@@ -405,13 +405,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.setTimeout(()=>{containerHowToPlay.classList.remove("animationPopDiv");}, 500);
             }
         }
+        
         // Add Popup layout effect on Credits Container
         if (event.target.id == "buttonCredits") {
             if (containerCredits.style.visibility == "visible") {
                 containerCredits.style.visibility = "hidden";
             } else {
                 containerCredits.style.visibility = "visible";
-                console.log(containerCredits.style.visibility)
                 containerCredits.classList.add("animationPopDiv");
                 window.setTimeout(()=>{containerCredits.classList.remove("animationPopDiv");}, 500);
             }
