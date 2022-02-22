@@ -1,0 +1,420 @@
+/* PAGE LAYOUT */
+
+html {
+    background:radial-gradient(circle at 1% 1%, rgb(252, 70, 107) 0px, rgb(233, 42, 150) 25%, rgb(110, 66, 180) 80%, rgb(39, 69, 218) 90%, rgb(23, 42, 136) 100%); 
+    height:100%;
+    margin:0 auto;
+    overflow:hidden;
+    width:100%;
+    -webkit-text-size-adjust:100%;
+}
+
+body {
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    margin:0 auto 0 auto;
+    max-width:720px;
+    width:100%;
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-sevlect:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+header {
+    align-items:center;
+    display:flex;
+    grid-gap:0 35px;
+    height:7vh;
+    justify-content:center;
+    margin:2.5vh auto 0.5vh auto;
+}
+
+@media screen and (min-width:430px){
+    header{grid-gap:0 80px;}
+}
+
+main {
+    align-items:center;
+    display:flex;
+    flex-direction:column;
+    flex-grow:1;
+    flex-shrink:50;
+    justify-content:center;
+    overflow:auto;
+    width:100%;
+}
+
+#game__notification {
+    background:rgba(0, 0, 0, 0.7);
+    border-radius:10px;
+    color:rgb(255, 255, 255);
+    height:45px;
+    left:50%;
+    line-height:45px;
+    margin:9.5vh 0 15px -125px;
+    opacity:0;
+    position:absolute;
+    text-align:center;
+    width:250px;
+}
+
+.overlayContainer {
+    background:rgba(0, 0, 0, 0.87);
+    border-radius:15px;
+    margin-bottom:120px;
+    position:absolute;
+    visibility:hidden;
+}
+
+.overlayContainer::-webkit-scrollbar {
+    background-color:transparent;
+    width:12px;
+}
+
+.overlayContainer::-webkit-scrollbar-thumb {
+    background:rgba(188, 185, 204, 0.514);
+    border-radius:6px;
+}
+
+#section__game {
+    display:flex;
+    flex-direction:column;
+    height:100%;
+    width:100%;
+}
+
+#game__board {
+    align-items:center;
+    display:flex;
+    flex-grow:1;
+    justify-content:center;
+}
+
+#board {
+    align-content:center;
+    display:grid;
+    flex-grow:0;
+    justify-content:center;
+    max-height:100%;
+}
+
+.square {
+    align-items:center;
+    background:rgba(156, 134, 134, 0.25);
+    border:2px solid rgb(197, 189, 182);
+    border-radius:8px;
+    display:flex;
+    justify-content:center;
+    text-transform:uppercase;
+}
+
+.shareButton {
+    background:rgba(41, 47, 49, 0.8);
+    border:1px solid black;
+    border-radius:10px;
+    bottom:50%;
+    color:rgb(255, 255, 255);
+    cursor:pointer;
+    left:50%;
+    line-height:15px;
+    margin-left:-140px;
+    position:relative;
+    visibility:hidden;
+    width:280px;
+}
+
+.shareButton:hover {
+    transform:scale(1.15);
+    transition:all 0.05s linear;
+}
+
+#howToPlay {
+    margin-top:12vh; /* Prevents shadowing title*/
+}
+
+.buttonHeader {
+    background-color:transparent;
+    background-repeat:no-repeat;
+    border:2px solid white;
+    border-radius:10px;
+    color:white;
+    cursor:pointer;
+    margin-bottom:10px;
+    overflow:hidden;
+    text-shadow:0px 0px 2px black;
+    opacity:0;
+    transform:translateY(-25px);
+}
+
+.buttonHeader:hover {
+    color:rgb(195, 105, 195);
+    transition:0.12s;
+}
+
+/* TEXT STYLES */
+
+.title {
+    color:rgb(255, 255, 255);
+    font-family:'Sedgwick Ave Display', cursive;
+    text-align:center;
+    opacity:0;
+    transform:translateY(-25px);
+}
+
+#game__notification {
+    font-family:'ARIAL', 'sans-serif';
+    font-weight:bold;
+    font-size:18px;
+}
+
+.buttonHeader {
+    font-family:arial, sans-serif;
+    font-weight:bold;
+    font-size:32px;
+}
+
+.square {
+    color:rgb(255, 255, 255);
+    font-family:'Arial', cursive;
+    font-weight:bold;
+}
+
+.game__keyboard-row button {
+    font-family:'Oregano', sans-serif;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.lineSolid {
+    margin:-18px 12px 20px 12px;
+}
+
+.shareButton {
+    font-family:'Oregano', sans-serif;
+    font-size:25px;
+}
+
+.howToLastText {
+    display:table;
+}
+
+.howToLastText p {
+    display:table-cell;
+    text-align:left;
+}
+
+p {
+    color:white;
+    font-family:'Arial', sans-serif;
+    font-weight:bold;
+    margin:1px 20px 25px 20px;
+    text-align:center;
+}
+
+/* KEYBOARD */
+
+#game__keyboard {
+    padding:5px 5px 10px 5px;
+}
+
+.game__keyboard-row {
+    align-items:center;
+    display:flex;
+    flex-grow:1;
+    float:right;
+    justify-content:center;
+    margin:0px auto;
+    touch-action:manipulation;
+    width:100%;
+}
+
+.game__keyboard-row button {
+    background:rgba(156, 134, 134, 0.25);
+    border:1px solid rgb(228, 222, 222);
+    border-radius:6px;
+    color:rgb(255, 255, 255);
+    cursor:pointer;
+    flex-grow:1;
+    height:45px;
+    margin:3px;
+    max-width:68px;
+    opacity:0;
+    padding:0;
+    text-transform:uppercase;
+}
+
+.game__keyboard-row button:hover {
+    font-size:24px;
+    transform:scale(1.05);
+    transition:all 0.05s linear;
+}
+
+.game__keyboard-row button.enter-button {
+    max-width:95px;
+}
+
+.nameCredit:hover {
+    text-decoration:underline;
+    transition:0.15s;
+}
+
+.nameCredit, .nameCredit a, .nameCredit a:visited, .nameCredit a:active {
+    color:white;
+    font-size:18px;
+    margin-bottom:12px;
+    margin-top:25px;
+	text-decoration:none;
+}
+
+.closeButton {
+    background:rgb(100, 91, 100);
+    border:1px solid rgb(42, 40, 40);
+    border-radius:20%;
+    font-size:23px;
+    height:30px;
+    position:absolute;
+    right:0px;
+    text-align:center;
+    width:30px;
+}
+
+/* ANIMATIONS */
+
+.animationTitle {
+    animation:titleSlide 0.65s ease 0.45s 1 normal forwards running;
+}
+
+.animationNotification {
+    animation:popNotification 2.0s;
+}
+
+.animationNope {
+    animation:nope 0.8s;
+}
+
+.animationBegin {
+    animation:introPop 0.25s ease-out 0.1s 1 normal backwards running;
+}
+
+.animationKeyboardBegin {
+    animation:introPop 0.4s ease-out 1s 1 normal forwards running;
+}
+
+.animationPop {
+    animation:pop 80ms ease-in-out;
+}
+
+.animationKBDPop {
+    animation:pop 150ms ease-in-out;
+}
+
+.animationFlip {
+    animation:flip 0.6s ease-in-out;
+}
+
+.animationEndGameWin {
+    animation:endGameButtonWin 0.25s ease;
+}
+
+.animationEndGameLose {
+    animation:nope 1s ease;
+}
+.animationKeyboardGone {
+    animation:keyboardGone 0.5s forwards;
+}
+
+.correctBox {
+    background-color:rgb(59, 153, 50);
+}
+
+.semiCorrectBox {
+    background-color:rgb(211, 178, 32);
+}
+
+.wrongBox {
+    background-color:rgb(90, 90, 100);
+}
+
+.animationPopDiv {
+    animation:PopDiv 0.35s forwards;
+}
+
+@keyframes titleSlide {
+    from {
+        opacity:0; 
+    } to {
+        transform:translateY(0);
+        opacity:1;
+}}
+
+@keyframes introPop {
+    from {
+        opacity:0;
+        transform:scale(0.3);
+        filter:hue-rotate(75deg);
+    } to {
+        opacity:1;
+        transform:scale(1);
+        filter:hue-rotate(0deg);
+}}
+
+@keyframes nope {
+      10% { transform:translateX(-13px); 
+    } 20% { transform:translateX(13px); 
+    } 30% { transform:translateX(-8px); 
+    } 40% { transform:translateX(8px); 
+    } 50% { transform:translateX(-5px); 
+    } 60% { transform:translateX(5px); 
+    } 70% { transform:translateX(-2px); 
+    } 80% { transform:translateX(2px); 
+    } 90% { transform:translateX(-1px); 
+    } 95% { transform:translateX(1px); 
+    } to  { transform:translateX(0);}
+}
+
+@keyframes pop {
+    1%{ transform:scale(1);
+    } 20%{ transform:scale(1.25);
+    } 100%{ transform:scale(1); }
+}
+
+@keyframes flip {
+    0%{ transform:rotateX(0deg);
+    } 50% { transform:rotateX(90deg);
+    } 100%{ transform:rotateX(0deg);}
+}
+
+@keyframes popNotification {
+      0%  {opacity:0; transform:translateY(25px) scale(0.6); 
+    } 5%  { opacity:1; 
+    } 30% { transform:translateY(10px); 
+    } 80% { opacity:1; 
+    } to  { opacity:0; transform:translateY(10px);}
+}
+
+@keyframes endGameButtonWin {
+      10% { transform:translateY(-6px)
+    } 20% { transform:translateY(-11.6px)
+    } 30% { transform:translateY(-16px)
+    } 40% { transform:translateY(-19px)
+    } 50% { transform:translateY(-20px)
+    } 60% { transform:translateY(-19px)
+    } 70% { transform:translateY(-16px)
+    } 80% { transform:translateY(-11.6px)
+    } 90% { transform:translateY(-6px)
+    } to  { transform:translateY(0)
+}}
+
+@keyframes keyboardGone {
+    from { transform:scale(1.0);
+    } to { transform:scale(0);}
+}
+
+@keyframes PopDiv {
+    from {  transform:scale(0.4);
+    } to { transform:scale(1);
+}}

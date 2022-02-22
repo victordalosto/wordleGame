@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <link rel="canonical" href="https://mcaurelio.com/">
     <link rel="shortcut icon" href="/imgs/icon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/styles08.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oregano&family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
@@ -15,29 +15,30 @@
 <body>
     <main>
         <container id="howToPlay" class="overlayContainer">
-          <button class="closeButton">X</button>
-          <p style="text-align: center; margin-top: 25px; margin-bottom: 5px;" class="overlayText">Jogo web baseado no <strong>Wordle</strong></p><br>
-          <p class="overlayText">Todo dia uma palavra do <strong><a style="color: rgb(250, 80, 110)">F</a><a style="color: rgb(240, 70, 130)">U</a><a style="color: rgb(235, 60, 140)">N</a><a style="color: rgb(230, 50, 150)">K</a></strong></p>
-          <p class="overlayText">Adivinhe a palavra em <strong><a style="color: rgb(216, 173, 182)">6</a></strong> tentativas.</p>
-          <p class="overlayText">A cada tentativa, a cor dos quadrados mostram o quão perto você está da palavra correta.</p><br>
-          <hr class="lineSolid">
-          <p class="overlayText"><strong>Exemplo:</strong></p>
-          <div id="howToSquare"></div> <br><br>
-          <div class="howToLastText"><div class="howToLast" id="howToSquare1"></div><p class="overlayText"> Indica que a palavra tem <strong style="color: rgb(195, 184, 186)">V</strong> e está na posição correta.</p></div><br><br>
-          <div class="howToLastText"><div class="howToLast" id="howToSquare2"></div><p class="overlayText"> Indica que a palavra tem a letra <strong style="color: rgb(195, 184, 186)">I</strong>, mas está na posição errada.</p></div><br><br>
-          <div class="howToLastText"><div class="howToLast" id="howToSquare3"></div><p class="overlayText"> Mostra que a palavra não tem as letras <strong style="color: rgb(195, 184, 186)">E, O, L</strong> ou <strong style="color: rgb(195, 184, 186)">U</strong></p></div><br><br>
+            <button class="closeButton">X</button>
+            <p style="text-align: center; margin-top: 25px; margin-bottom: 5px;">Jogo web baseado no Wordle</p><br>
+            <p>Todo dia uma palavra do <a style="color: rgb(250, 80, 110)">F</a><a style="color: rgb(240, 70, 130)">U</a><a style="color: rgb(235, 60, 140)">N</a><a style="color: rgb(230, 50, 150)">K</a></p>
+            <p>Adivinhe a palavra em <a style="color: rgb(216, 173, 182)">6</a> tentativas.</p>
+            <p>A cada tentativa, a cor dos quadrados mostram o quão perto você está da palavra correta.</p><br>
+            <hr class="lineSolid">
+            <p>Exemplo:</p>
+            <div id="howToSquare"></div> <br><br>
+            <div class="howToLastText"><div id="howToSquare1"></div><p>Indica que a palavra tem <strong style="color: rgb(195, 184, 186)">V</strong> e está na posição correta.</p></div><br><br>
+            <div class="howToLastText"><div id="howToSquare2"></div><p>Indica que a palavra tem a letra <strong style="color: rgb(195, 184, 186)">I</strong>, mas está na posição errada.</p></div><br><br>
+            <div class="howToLastText"><div id="howToSquare3"></div><p>Mostra que a palavra não tem as letras <strong style="color: rgb(195, 184, 186)">E, O, L</strong> ou <strong style="color: rgb(195, 184, 186)">U</strong></p></div><br><br>
         </container>
         
         <container id="ranking" class="overlayContainer">
-          </container>
+          <!-- Place Holder Future database of recent used words -->
+        </container>
 
         <container id="credits" class="overlayContainer">
-          <button class="closeButton">X</button>
-          <p style="text-align: center; margin-top: 25px; margin-bottom: 5px;" class="overlayText">Créditos</p><br><br>
-          <hr class="lineSolid">
-          <p class="overlayText" style="text-align: center;">Desenvolvedor: <strong><a href="https://github.com/victordalosto" class="nameCredit" style="color: rgb(250, 100, 150);">Victor Dalosto</a></strong></p>
-          <p class="overlayText" style="text-align: center;">Hospedagem: <strong><a href="https://github.com/HKRAGD" class="nameCredit" style="color: rgb(250, 100, 150);">Rodrigo Dalosto</a></strong></p><br>
-          <p class="overlayText" style="text-align: center;">Contribuição com palavras: <br><a style="color: rgb(250, 100, 150);">Julia Porto</a>,  <br><a style="color: rgb(250, 100, 150);">Juliana Cardoso</a>, <br><a style="color: rgb(250, 100, 150);">Jordana Vieira</a>.</p><br>
+            <button class="closeButton">X</button>
+            <p style="text-align: center; margin-top: 25px; margin-bottom: 5px;">Créditos</p><br><br>
+            <hr class="lineSolid">
+            <p style="text-align: center;">Desenvolvedor: <strong><a href="https://github.com/victordalosto" class="nameCredit" style="color: rgb(250, 100, 150);">Victor Dalosto</a></strong></p>
+            <p style="text-align: center;">Hospedagem: <strong><a href="https://github.com/HKRAGD" class="nameCredit" style="color: rgb(250, 100, 150);">Rodrigo Dalosto</a></strong></p><br>
+            <p style="text-align: center;">Contribuição com palavras: <br><a style="color: rgb(250, 100, 150);">Julia Porto</a>,  <br><a style="color: rgb(250, 100, 150);">Juliana Cardoso</a>, <br><a style="color: rgb(250, 100, 150);">Jordana Vieira</a>.</p><br>
        </container>
 
         <section id="section__game">
@@ -48,7 +49,7 @@
             </header>
             
             <div id="game__notification">
-              <div class="notification"></div>
+                <div class="notification"></div>
             </div>
 
             <div id="game__board">
@@ -57,45 +58,43 @@
 
             <div id="game__keyboard"> 
                 <div class="game__keyboard-row">
-                  <button data-key="q" tabindex="-1">q</button>
-                  <button data-key="w" tabindex="-1">w</button>
-                  <button data-key="e" tabindex="-1">e</button>
-                  <button data-key="r" tabindex="-1">r</button>
-                  <button data-key="t" tabindex="-1">t</button>
-                  <button data-key="y" tabindex="-1">y</button>
-                  <button data-key="u" tabindex="-1">u</button>
-                  <button data-key="i" tabindex="-1">i</button>
-                  <button data-key="o" tabindex="-1">o</button>
-                  <button data-key="p" tabindex="-1">p</button>
+                    <button data-key="q">q</button>
+                    <button data-key="w">w</button>
+                    <button data-key="e">e</button>
+                    <button data-key="r">r</button>
+                    <button data-key="t">t</button>
+                    <button data-key="y">y</button>
+                    <button data-key="u">u</button>
+                    <button data-key="i">i</button>
+                    <button data-key="o">o</button>
+                    <button data-key="p">p</button>
                 </div>
                 <div class="game__keyboard-row">
-                  <div class="spacer-half"></div>
-                  <button data-key="a" tabindex="-1">a</button>
-                  <button data-key="s" tabindex="-1">s</button>
-                  <button data-key="d" tabindex="-1">d</button>
-                  <button data-key="f" tabindex="-1">f</button>
-                  <button data-key="g" tabindex="-1">g</button>
-                  <button data-key="h" tabindex="-1">h</button>
-                  <button data-key="j" tabindex="-1">j</button>
-                  <button data-key="k" tabindex="-1">k</button>
-                  <button data-key="l" tabindex="-1">l</button>
-                  <button data-key="backspace" class="wide-button del-button" tabindex="-1">⌫</button>
-                  <div class="spacer-half"></div>
+                    <button data-key="a">a</button>
+                    <button data-key="s">s</button>
+                    <button data-key="d">d</button>
+                    <button data-key="f">f</button>
+                    <button data-key="g">g</button>
+                    <button data-key="h">h</button>
+                    <button data-key="j">j</button>
+                    <button data-key="k">k</button>
+                    <button data-key="l">l</button>
+                    <button data-key="backspace" class="del-button">⌫</button>
                 </div>
                 <div class="game__keyboard-row">
-                  <button data-key="z" tabindex="-1">z</button>
-                  <button data-key="x" tabindex="-1">x</button>
-                  <button data-key="c" tabindex="-1">c</button>
-                  <button data-key="v" tabindex="-1">v</button>
-                  <button data-key="b" tabindex="-1">b</button>
-                  <button data-key="n" tabindex="-1">n</button>
-                  <button data-key="m" tabindex="-1">m</button>
-                  <button data-key="enter" class="wide-button enter-button">Enter</button>
+                    <button data-key="z">z</button>
+                    <button data-key="x">x</button>
+                    <button data-key="c">c</button>
+                    <button data-key="v">v</button>
+                    <button data-key="b">b</button>
+                    <button data-key="n">n</button>
+                    <button data-key="m">m</button>
+                    <button data-key="enter" class="enter-button">Enter</button>
                 </div>
                 <button class="shareButton">COMPARTILHAR</button>
             </div>
         </section>
     </main>
-  <script src="js/main08.js"></script> 
+  <script src="js/main.js"></script> 
 </body>
 </html>
